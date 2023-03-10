@@ -105,9 +105,6 @@ Another important aspect for iterative map is coordinate transformation. That is
 So, the iterative map cannot uniquely determine the series. It's gauged, up to coordinate transform. Precisely, two iterative maps $f$ and $g$ generate intrinsically identitical series if there's a diffeomorphism $\phi$ such that $g = \phi \circ f \circ \phi^{-1}$.
 """
 
-# ╔═╡ dbf5e658-9291-4774-88d3-7b8bf3fa3e52
-
-
 # ╔═╡ fd6c2087-c18a-4238-8798-cefd94007d18
 md"""
 ### Fixed Point and Stability
@@ -208,9 +205,7 @@ We find that, around $x = 0$, the local shape looks like the original $f$. Indee
 """
 
 # ╔═╡ 5f0d985e-92a7-4e5f-9a3f-9253a4b610f7
-function get_α(f)
-	-1 / f(f(0))
-end
+get_α(f) = -1 / f(f(0))
 
 # ╔═╡ 2fd5f807-8a52-4964-b62f-55f18e469d73
 function display_zoom_in(μ)
@@ -221,7 +216,7 @@ function display_zoom_in(μ)
 end
 
 # ╔═╡ 9d58464c-1876-4b3c-a0af-c42033d8e862
-@bind μ Slider(LinRange(0, 2, 100), default=1.)
+@bind μ Slider(LinRange(0, 2, 100), default=1.4)
 
 # ╔═╡ 3361f969-b02e-431c-bde9-7439ff8b8e3e
 plot_iterative_map(x, x -> logistic(μ, x), "Logistic Map")
@@ -236,21 +231,21 @@ display_zoom_in(μ)
 md"""
 The difference is that, $f_{\mu}^1$ is flatter than $f_{\mu}$. This is plausible for period-doubling bifurcation arising.
 
-Remark that zoom-in does not change the shape of the curve. Indeed, by chain rule, $f_{\mu}^{1 \prime}(x) = (f_{\mu}^{\prime} \circ f_{\mu}^{\prime}) (-x / \alpha)$. So, the fixed point and its stability is invariant under zoom-in. That is, to study the fixed point of $f_{\mu} \circ f_{\mu}$, that is 2-circle, we can equivalently study that of $f_{\mu}^1$.
+Remark that zoom-in does not change the shape of the curve. So, the fixed point and its stability is invariant under zoom-in. That is, to study the fixed point of $f_{\mu} \circ f_{\mu}$, that is 2-circle, we can equivalently study that of $f_{\mu}^1$.
 
 Then, we continue increasing the $\mu$, rather than on $f_{\mu}$, but on $f_{\mu}^1$, the slope of which becomes greater and greater. Again, at some value, the fixed point of $f_{\mu}^1$ becomes unstable, meaning that a 4-circle appears.
 
 This process is recursive. And now, we can define $f_{\mu}^2(x) := -\alpha (f_{\mu}^1 \circ f_{\mu}^1) (x / (-\alpha))$, by which we study the 4-circle with the same process as before.
 
-Generally, by definition the operator
+Now we come to the critical step. The previous analysis hints us to change the object of investigation from the logistic map to the generic process that generates period-doubling bifurcation. This is the basic idea of *renormalization group*. To do so, define the operator
 
 $$\hat{R}: C(\mathbb{R}) \to C(\mathbb{R}),$$
 
 $$\hat{R}(f)(x) := -\alpha (f \circ f) (x / (-\alpha)),$$
 
-where $\alpha$ is a functional of $f$, we can recursively obtain the $f_{\mu}^n = \hat{R}(f_{\mu}^{n-1})$, by which we study the $2^n$-circle.
+where $\alpha$ is a functional of $f$. We can recursively obtain the $f_{\mu}^n = \hat{R}(f_{\mu}^{n-1})$, by which we study the $2^n$-circle.
 
-This operator, by which the same process can be simply repeated on higher circles, is called *renormalization group operator* (RGO).
+This operator, by which the same process can be simply repeated onto higher circles, is called *renormalization group operator* (RGO).
 """
 
 # ╔═╡ 1084b6c7-882d-45a5-a5c2-e9b0277d9a5f
@@ -282,7 +277,7 @@ end
 # ╔═╡ 8b4c382d-97fc-422a-a690-ff9d2c886f5e
 function R̂(c)
 	f = get_f(c)
-	α = -1 / f(f(0))
+	α = get_α(f)
 	next_f(x) = -α * f(f(-x / α))
 
 	N = length(c)
@@ -355,24 +350,14 @@ For other given initial value of $c$, the result is different. And the $\alpha$ 
 md"""
 ### Self-similarity
 
-As the Lyapunov spectrum indicates, the difference $\lim_{n \to \infty} \mu_{n+1} - \mu_n = 0$. This means that, when $n$ is large enough, the range of $\mu$ such that the fixed points of $f_{\mu}^n$ are stable becomes tiny. That is, the shape of $f_{\mu}^n$ is almost invariant during the study of $2^n$-circle. This implies that $f_{\mu}^{n+1}$ looks TODO
+The result is that the logistic map at critical point, $f_{\mu^*}$, has $\hat{R}(f_{\mu^*}) \approx f_{\mu^*}$. But I don't know why.
 """
-
-# ╔═╡ 7f27b6a1-32d3-460b-b7f1-dcc201ae95a4
-begin
-	c = [1.5]
-	for i = 1:20
-		c = R̂(c)
-		@show i
-		@show c
-	end
-end
 
 # ╔═╡ f6b1c5dd-1c03-4e4e-8080-fbaf75f6e1b7
 md"""
 ### Stability of the Fixed Point
 
-Since $\hat{R}$ becomes an iterative map after truncation, we can study its stability at the fixed point as previously stated. Let the matrix norm be $L_2$-norm, that is, $\|\partial f(x^*)\| = |\lambda_{\text{max}}|$, where $\lambda_{\text{max}}$ is the maximum of the eigen-values of the Jacobian matrix $\partial f(x^*)$.
+Since $\hat{R}$ is again an iterative map after truncation, we can study its stability at the fixed point by the method previously stated. We employ $L_2$-norm. In this case, the induced matrix norm is $\|\partial f(x^*)\| = |\lambda_{\text{max}}|$, where $\lambda_{\text{max}}$ is the maximum of the eigen-values of the Jacobian matrix $\partial f(x^*)$.
 """
 
 # ╔═╡ 296ff34f-4e59-44c9-a33d-87819a413180
@@ -1538,8 +1523,7 @@ version = "1.4.1+0"
 # ╟─3270c71b-c5be-4a77-a270-08485d150a94
 # ╠═4c77aff1-7f12-4225-a8ec-33132b3368e4
 # ╟─29fd9235-eab3-41bd-b922-f3ec5b31f836
-# ╠═dbf5e658-9291-4774-88d3-7b8bf3fa3e52
-# ╠═fd6c2087-c18a-4238-8798-cefd94007d18
+# ╟─fd6c2087-c18a-4238-8798-cefd94007d18
 # ╟─0851d9a0-7432-44c5-a81f-a7fc941601bd
 # ╠═11c941cf-230b-4cc6-9ba9-e1fa800ff58b
 # ╠═b2753165-501d-472c-8345-d3484c7f5bcd
@@ -1575,9 +1559,8 @@ version = "1.4.1+0"
 # ╟─be38e5e4-9a68-42b7-9351-300dc1c83fcc
 # ╠═b9cd501d-948f-47d4-8e94-119f42be23bc
 # ╟─048580b6-8bbc-46fd-9d29-6e923aba4739
-# ╠═b1ff8592-f5df-4b16-aaaf-f4b398f65ea1
-# ╠═7f27b6a1-32d3-460b-b7f1-dcc201ae95a4
-# ╠═f6b1c5dd-1c03-4e4e-8080-fbaf75f6e1b7
+# ╟─b1ff8592-f5df-4b16-aaaf-f4b398f65ea1
+# ╟─f6b1c5dd-1c03-4e4e-8080-fbaf75f6e1b7
 # ╠═610eae85-0573-44d8-b934-b9b3396e8bd5
 # ╠═60d9287b-df42-4c7c-9d48-22cfaf39f68a
 # ╠═296ff34f-4e59-44c9-a33d-87819a413180
