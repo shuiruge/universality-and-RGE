@@ -53,7 +53,7 @@ In this notebook, we study the universality of the (discrete) logistic map and d
 md"""
 ## Iterative Map
 
-A map $f: M \to M$, where $M$ is a subset of an Euclidean space, is called an *iterative map*. Starting at a given $x_0 \in M$., it generates an infinite series $(x_0, x_1, x_2, \ldots)$, with all elements in $M$.
+A map $f: M \to M$, where $M$ is a subset of an Euclidean space, is called an *iterative map*. Starting at an arbitrarily given $x_0 \in M$, it generates an infinite series $(x_0, x_1, x_2, \ldots)$, with all elements in $M$, in the way that $x_{k+1} = f(x_k)$.
 """
 
 # ╔═╡ b15a147c-0775-42b1-865a-db64fe46947e
@@ -136,17 +136,11 @@ function plot_iterative_map(x, f, label)
 	fig
 end
 
-# ╔═╡ b1cde196-2cbb-47e4-9582-9b998207205f
-# ╠═╡ disabled = true
-#=╠═╡
-@bind μ Slider(LinRange(0, 2, 100), default=1.)
-  ╠═╡ =#
-
 # ╔═╡ 71789ebe-32b9-4101-b4c2-b3eb13cfabb5
 md"""
 ### Period-Doubling Bifurcation
 
-There's an infinite series $(\mu_0, \mu_1, \ldots) \in [0, \mu^*)$, where $\mu^*: = 1.40109\cdots$. As $\mu$ increase from $0$ to $\mu^*$, stable orbit doubles its period every time $\mu$ crosses an element in the series.
+There's an infinite series $(\mu_0, \mu_1, \ldots) \in [0, \mu^*)$, where $\mu^* = 1.40109\cdots$. As $\mu$ increase from $0$ to $\mu^*$, stable orbit doubles its period every time $\mu$ crosses an element in the series.
 
 As $\mu \to \mu^*$, a *critical point*, the stable orbit doubles its period infinite times so that it runs over the domain $[-1, 1]$. At this stage, the iteraion goes into chaos.
 """
@@ -190,15 +184,6 @@ To quantitively describe this process, we need to study the composition process.
 First, we plot the $(f_{\mu} \circ f_{\mu}) (x)$ for $x \in [-1, 1]$:
 """
 
-# ╔═╡ 2ac385c9-b8d8-40e9-8f65-b72e3c0bfb3e
-@bind μ Slider(LinRange(0, 2, 100), default=1.)
-
-# ╔═╡ 3361f969-b02e-431c-bde9-7439ff8b8e3e
-plot_iterative_map(LinRange(-1, 1, 1000), x -> logistic(μ, x), "Logistic Map")
-
-# ╔═╡ 91e3aaff-e724-40f8-82b0-be20ea2ee6e0
-plot_iterative_map(LinRange(-1, 1, 1000), x -> logistic(μ, logistic(μ, x)), "Logistic 2")
-
 # ╔═╡ 8e42d108-fd41-4577-941e-7f9e4ca04b5a
 md"""
 We find that, around $x = 0$, the local shape looks like the original $f$. Indeed, if we zoom in (and flip) by a factor $-1 / \alpha$, where $\alpha > 1$, to the original scale, we will get the function with the same type of shape. By saying the orignal scale, we mean that $g_{\mu}(0) = 1$ with $g_{\mu}(x) := -\alpha (f_{\mu} \circ f_{\mu}) (x / (-\alpha))$, since $f_{\mu}(0) = 1$. This means the $\alpha = -1 / (f \circ f) (0)$.
@@ -211,8 +196,8 @@ get_α(f) = -1 / f(f(0))
 function display_zoom_in(μ)
 	f = x -> logistic(μ, x)
 	α = get_α(f)
-	f1(x) = -α * (f ∘ f)(-x / α)
-	plot_iterative_map(LinRange(-1, 1, 1000), f1, "Zoom-in")
+	g(x) = -α * (f ∘ f)(-x / α)
+	plot_iterative_map(LinRange(-1, 1, 1000), g, "Zoom-in")
 end
 
 # ╔═╡ 9d58464c-1876-4b3c-a0af-c42033d8e862
@@ -221,18 +206,15 @@ end
 @bind μ Slider(LinRange(0, 2, 100), default=1.4)
   ╠═╡ =#
 
-# ╔═╡ e5284414-3f31-4edc-84cc-a0869728bdda
-display_zoom_in(μ)
-
 # ╔═╡ debc320f-15db-484a-969b-9336398e7d1b
 md"""
 The difference is that, $g_{\mu}$ is flatter than $f_{\mu}$. This is plausible for period-doubling bifurcation arising.
 
 Remark that zoom-in does not change the shape of the curve. So, the fixed point and its stability is invariant under zoom-in. That is, to study the fixed point of $f_{\mu} \circ f_{\mu}$, that is 2-circle, we can equivalently study that of $g_{\mu}$.
 
-Then, we continue increasing the $\mu$, rather than on $f_{\mu}$, but on $g_{\mu}$, the slope of which becomes greater and greater. Again, at some value, the fixed point of $f_{\mu}^1$ becomes unstable, meaning that a 4-circle appears.
+Then, we continue increasing the $\mu$, rather than on $f_{\mu}$, but on $g_{\mu}$, the slope of which becomes greater and greater. Again, at some value, the fixed point of $g_{\mu}$ becomes unstable, meaning that a 4-circle appears.
 
-This process is recursive. And now, we can define $h_{\mu}(x) := -\alpha (g_{\mu} \circ g_{\mu}) (x / (-\alpha))$, by which we study the 4-circle with the same process as before.
+This process is recursive. And now, we can define $h_{\mu}(x) := -\alpha (g_{\mu} \circ g_{\mu}) (x / (-\alpha))$, by which we study the 4-circle with the same process as before. (Notice that the $\alpha$ herein is a functional of $g_{\mu}$.)
 
 Now we come to the critical step. The previous analysis hints us to change the object of investigation from the logistic map to the generic process that generates period-doubling bifurcation. This is the basic idea of *renormalization group*. To do so, define the operator
 
@@ -253,8 +235,17 @@ end
 
 # ╔═╡ 27d36903-fe82-4188-b353-9140aa3280fb
 md"""
-Let's visualize the $f_{\mu}$, $f_{\mu}^1$, $f_{\mu}^2$, etc.
+Let's visualize the $f_{\mu}$, $\hat{R}(f_{\mu})$, $\hat{R}^2(f_{\mu})$, etc.
 """
+
+# ╔═╡ 3361f969-b02e-431c-bde9-7439ff8b8e3e
+plot_iterative_map(LinRange(-1, 1, 1000), x -> logistic(μ, x), "Logistic Map")
+
+# ╔═╡ 91e3aaff-e724-40f8-82b0-be20ea2ee6e0
+plot_iterative_map(LinRange(-1, 1, 1000), x -> logistic(μ, logistic(μ, x)), "Logistic 2")
+
+# ╔═╡ e5284414-3f31-4edc-84cc-a0869728bdda
+display_zoom_in(μ)
 
 # ╔═╡ a2f66f79-8e17-4d2a-a90c-c021358e065f
 function plot_R̂(order)
@@ -266,16 +257,10 @@ function plot_R̂(order)
 
 	for i = 1:order
 		f = R̂(f)
-		plot!(fig, x, f, label=L"$f_{\mu}^{%$i}$")
+		plot!(fig, x, f, label=L"$\hat{R}^{%$i} (f_{\mu})")
 	end
 	fig
 end
-
-# ╔═╡ cc77c616-7b12-4a71-958e-f3eea0bf5df0
-# ╠═╡ disabled = true
-#=╠═╡
-@bind μ Slider(LinRange(0, 2, 100), default=1.4)
-  ╠═╡ =#
 
 # ╔═╡ 09732dbb-a7b1-4642-a190-aa3d6c6c46a5
 plot_R̂(3)
@@ -284,7 +269,7 @@ plot_R̂(3)
 md"""
 ### Truncation of Space
 
-However, the domain of the renormalization operator is the whole function space $C(\mathbb{R})$, which is untractable. For instance, even though lookes like $f_{\mu}$, the expression of $\hat{R}(f_{\mu})$ is much more complicated. As $n$ increases, the expression of $\hat{R}^n(f_{\mu})$ contains so many terms that the investigation becomes frustrating。
+However, the domain of the renormalization group operator is the whole function space $C(\mathbb{R})$, which is untractable. For instance, even though lookes like $f_{\mu}$, the expression of $\hat{R}(f_{\mu})$ is much more complicated. As $n$ increases, the expression of $\hat{R}^n(f_{\mu})$ contains so many terms that the investigation becomes frustrating。
 
 The strategy to solve the problem is called *local potential approximation*, first proposed by Physicists. The basic idea is to truncate the whole function space to its subspace, which has finite dimension, ensuring that the loss is negligible.
 
@@ -365,6 +350,9 @@ For the given initial values, we set $c_1 = -1.2$ and the rests vanish, correspo
 # ╔═╡ 65a6fa8c-8c70-4390-a98e-8d1921bde604
 fixed_point = iter_solve(RG_solver, [-1.2, 0., 0., 0., 0.])
 
+# ╔═╡ 8e214be9-5218-4378-9b7f-f0151c5c8510
+R̂ₜ([-1.4, 0.])
+
 # ╔═╡ be38e5e4-9a68-42b7-9351-300dc1c83fcc
 md"""
 With the $c$ converges to the fixed point, so is the $\alpha$, which is a function of $c$.
@@ -439,6 +427,21 @@ Notice that the previous analysis is quite general, regardless of the explicit e
 
 A famous instance is the turbulence, where, as the flux increases to the critical point, the same self-similar $\alpha$ emerges! We can predict the iterative series without knowing the underlying physics (Navier-Stokes equation)!
 """
+
+# ╔═╡ cc77c616-7b12-4a71-958e-f3eea0bf5df0
+@bind μ Slider(LinRange(1, 1.5, 100))
+
+# ╔═╡ b1cde196-2cbb-47e4-9582-9b998207205f
+# ╠═╡ disabled = true
+#=╠═╡
+@bind μ Slider(LinRange(0, 2, 100), default=1.)
+  ╠═╡ =#
+
+# ╔═╡ 2ac385c9-b8d8-40e9-8f65-b72e3c0bfb3e
+# ╠═╡ disabled = true
+#=╠═╡
+@bind μ Slider(LinRange(1.3, 1.5, 100))
+  ╠═╡ =#
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -1553,7 +1556,7 @@ version = "1.4.1+0"
 
 # ╔═╡ Cell order:
 # ╟─4381c01e-b9b8-11ed-26dd-63dd5f42ad3f
-# ╟─14db8687-8365-4d18-b7da-896ddb64fa58
+# ╠═14db8687-8365-4d18-b7da-896ddb64fa58
 # ╠═b15a147c-0775-42b1-865a-db64fe46947e
 # ╟─b21c7143-8636-4b77-956e-67b2094f66d8
 # ╠═6ad2b2f6-01cf-4425-a45d-c59af164cd5f
@@ -1599,6 +1602,7 @@ version = "1.4.1+0"
 # ╠═5ee5fc11-257f-420a-a22a-740d6d584fbb
 # ╟─355fd36f-c41f-442a-89d6-4064fd4c6a91
 # ╠═65a6fa8c-8c70-4390-a98e-8d1921bde604
+# ╠═8e214be9-5218-4378-9b7f-f0151c5c8510
 # ╟─be38e5e4-9a68-42b7-9351-300dc1c83fcc
 # ╠═b9cd501d-948f-47d4-8e94-119f42be23bc
 # ╟─048580b6-8bbc-46fd-9d29-6e923aba4739
