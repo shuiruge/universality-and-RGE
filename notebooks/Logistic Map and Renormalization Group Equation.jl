@@ -21,7 +21,7 @@ using Statistics: mean
 using ForwardDiff: derivative
 
 # ╔═╡ b2753165-501d-472c-8345-d3484c7f5bcd
-using Plots, PlutoUI
+using Plots, PlutoUI, LaTeXStrings
 
 # ╔═╡ 9b25f3d7-b251-4300-9805-b0fb2fc8b7c5
 using TaylorSeries: Taylor1, getcoeff
@@ -120,7 +120,7 @@ md"""
 
 The discrete logistic map is defined as $f_{\mu}(x) = \mu x (1-x)$ with $\mu \in [0, 4], x \in [0, 1]$; and $x_{n+1} = f_{\mu}(x_n)$ for $\forall n \in \mathbb{N}$.
 
-However, as we will see in below, the "standard" form of logistic map $f_{\mu}(x) = 1 - \mu x^2$, where $\mu \in [0, 2], x \in [-1, 1]$, is more convenient. To convert to the "standard" form, a linear coordinate transform is sufficient, satisfying the conditions: the diffeomorphism $\phi: 0 \mapsto 1/2$ and the transformed iterative map $\phi \circ f_{\mu} \circ \phi^{-1}(0) = 1$.
+However, as we will see in below, the "standard" form of logistic map $f_{\mu}(x) = 1 - \mu x^2$, where $\mu \in [0, 2], x \in [-1, 1]$, is more convenient. To convert to the "standard" form, a linear coordinate transform is sufficient, satisfying the conditions: the diffeomorphism $\phi: 0 \mapsto 1/2$ and the transformed iterative map $\phi \circ f_{\mu} \circ \phi^{-1}(0) = 1$. Remark that the $\phi$, which should depend on $\mu$, is not well-defined at $\mu = 2$, where $f_{\mu} (0) = 0$, since its parameters depends on $1 / (\mu - 2)$.
 """
 
 # ╔═╡ 11c941cf-230b-4cc6-9ba9-e1fa800ff58b
@@ -141,9 +141,6 @@ end
 #=╠═╡
 @bind μ Slider(LinRange(0, 2, 100), default=1.)
   ╠═╡ =#
-
-# ╔═╡ 9b4bb85d-aec8-4279-9681-1e88ac6c7a02
-x = LinRange(-1, 1, 1000)
 
 # ╔═╡ 71789ebe-32b9-4101-b4c2-b3eb13cfabb5
 md"""
@@ -194,14 +191,17 @@ First, we plot the $(f_{\mu} \circ f_{\mu}) (x)$ for $x \in [-1, 1]$:
 """
 
 # ╔═╡ 2ac385c9-b8d8-40e9-8f65-b72e3c0bfb3e
-# ╠═╡ disabled = true
-#=╠═╡
 @bind μ Slider(LinRange(0, 2, 100), default=1.)
-  ╠═╡ =#
+
+# ╔═╡ 3361f969-b02e-431c-bde9-7439ff8b8e3e
+plot_iterative_map(LinRange(-1, 1, 1000), x -> logistic(μ, x), "Logistic Map")
+
+# ╔═╡ 91e3aaff-e724-40f8-82b0-be20ea2ee6e0
+plot_iterative_map(LinRange(-1, 1, 1000), x -> logistic(μ, logistic(μ, x)), "Logistic 2")
 
 # ╔═╡ 8e42d108-fd41-4577-941e-7f9e4ca04b5a
 md"""
-We find that, around $x = 0$, the local shape looks like the original $f$. Indeed, if we zoom in (and flip) by a factor $-1 / \alpha$, where $\alpha > 1$, to the original scale, we will get the function with the same type of shape. By saying the orignal scale, we mean that $f_{\mu}^1(0) = 1$ with $f_{\mu}^1(x) := -\alpha (f_{\mu} \circ f_{\mu}) (x / (-\alpha))$, since $f_{\mu}(0) = 1$. This means the $\alpha = -1 / (f \circ f) (0)$.
+We find that, around $x = 0$, the local shape looks like the original $f$. Indeed, if we zoom in (and flip) by a factor $-1 / \alpha$, where $\alpha > 1$, to the original scale, we will get the function with the same type of shape. By saying the orignal scale, we mean that $g_{\mu}(0) = 1$ with $g_{\mu}(x) := -\alpha (f_{\mu} \circ f_{\mu}) (x / (-\alpha))$, since $f_{\mu}(0) = 1$. This means the $\alpha = -1 / (f \circ f) (0)$.
 """
 
 # ╔═╡ 5f0d985e-92a7-4e5f-9a3f-9253a4b610f7
@@ -216,26 +216,23 @@ function display_zoom_in(μ)
 end
 
 # ╔═╡ 9d58464c-1876-4b3c-a0af-c42033d8e862
+# ╠═╡ disabled = true
+#=╠═╡
 @bind μ Slider(LinRange(0, 2, 100), default=1.4)
-
-# ╔═╡ 3361f969-b02e-431c-bde9-7439ff8b8e3e
-plot_iterative_map(x, x -> logistic(μ, x), "Logistic Map")
-
-# ╔═╡ 91e3aaff-e724-40f8-82b0-be20ea2ee6e0
-plot_iterative_map(x, x -> logistic(μ, logistic(μ, x)), "Logistic 2")
+  ╠═╡ =#
 
 # ╔═╡ e5284414-3f31-4edc-84cc-a0869728bdda
 display_zoom_in(μ)
 
 # ╔═╡ debc320f-15db-484a-969b-9336398e7d1b
 md"""
-The difference is that, $f_{\mu}^1$ is flatter than $f_{\mu}$. This is plausible for period-doubling bifurcation arising.
+The difference is that, $g_{\mu}$ is flatter than $f_{\mu}$. This is plausible for period-doubling bifurcation arising.
 
-Remark that zoom-in does not change the shape of the curve. So, the fixed point and its stability is invariant under zoom-in. That is, to study the fixed point of $f_{\mu} \circ f_{\mu}$, that is 2-circle, we can equivalently study that of $f_{\mu}^1$.
+Remark that zoom-in does not change the shape of the curve. So, the fixed point and its stability is invariant under zoom-in. That is, to study the fixed point of $f_{\mu} \circ f_{\mu}$, that is 2-circle, we can equivalently study that of $g_{\mu}$.
 
-Then, we continue increasing the $\mu$, rather than on $f_{\mu}$, but on $f_{\mu}^1$, the slope of which becomes greater and greater. Again, at some value, the fixed point of $f_{\mu}^1$ becomes unstable, meaning that a 4-circle appears.
+Then, we continue increasing the $\mu$, rather than on $f_{\mu}$, but on $g_{\mu}$, the slope of which becomes greater and greater. Again, at some value, the fixed point of $f_{\mu}^1$ becomes unstable, meaning that a 4-circle appears.
 
-This process is recursive. And now, we can define $f_{\mu}^2(x) := -\alpha (f_{\mu}^1 \circ f_{\mu}^1) (x / (-\alpha))$, by which we study the 4-circle with the same process as before.
+This process is recursive. And now, we can define $h_{\mu}(x) := -\alpha (g_{\mu} \circ g_{\mu}) (x / (-\alpha))$, by which we study the 4-circle with the same process as before.
 
 Now we come to the critical step. The previous analysis hints us to change the object of investigation from the logistic map to the generic process that generates period-doubling bifurcation. This is the basic idea of *renormalization group*. To do so, define the operator
 
@@ -243,22 +240,59 @@ $$\hat{R}: C(\mathbb{R}) \to C(\mathbb{R}),$$
 
 $$\hat{R}(f)(x) := -\alpha (f \circ f) (x / (-\alpha)),$$
 
-where $\alpha$ is a functional of $f$. We can recursively obtain the $f_{\mu}^n = \hat{R}(f_{\mu}^{n-1})$, by which we study the $2^n$-circle.
+where $\alpha$ is a functional of $f$. We can recursively obtain the $\hat{R}^n(f_{\mu})$, by which we study the $2^n$-circle.
 
 This operator, by which the same process can be simply repeated onto higher circles, is called *renormalization group operator* (RGO).
 """
+
+# ╔═╡ 5f8081d4-552c-460e-baa1-a09c323857a5
+function R̂(f)
+	α = get_α(f)
+	x -> -α * f(f(-x / α))
+end
+
+# ╔═╡ 27d36903-fe82-4188-b353-9140aa3280fb
+md"""
+Let's visualize the $f_{\mu}$, $f_{\mu}^1$, $f_{\mu}^2$, etc.
+"""
+
+# ╔═╡ a2f66f79-8e17-4d2a-a90c-c021358e065f
+function plot_R̂(order)
+	fig = plot()
+	x = LinRange(-1, 1, 1000)
+	f(x) = logistic(μ, x)
+	plot!(fig, x, x, label = "y = x", linestyle=:dash)
+	plot!(fig, x, f, label=L"$f_{\mu}$")
+
+	for i = 1:order
+		f = R̂(f)
+		plot!(fig, x, f, label=L"$f_{\mu}^{%$i}$")
+	end
+	fig
+end
+
+# ╔═╡ cc77c616-7b12-4a71-958e-f3eea0bf5df0
+# ╠═╡ disabled = true
+#=╠═╡
+@bind μ Slider(LinRange(0, 2, 100), default=1.4)
+  ╠═╡ =#
+
+# ╔═╡ 09732dbb-a7b1-4642-a190-aa3d6c6c46a5
+plot_R̂(3)
 
 # ╔═╡ 1084b6c7-882d-45a5-a5c2-e9b0277d9a5f
 md"""
 ### Truncation of Space
 
-However, the domain of the renormalization operator is the whole function space $C(\mathbb{R})$, which is untractable. For instance, even though lookes like $f_{\mu}$, the expression of $f_{\mu}^1$ is much more complicated. As $n$ increases, the expression of $f_{\mu}^n$ contains so many terms that the investigation becomes frustrating。
+However, the domain of the renormalization operator is the whole function space $C(\mathbb{R})$, which is untractable. For instance, even though lookes like $f_{\mu}$, the expression of $\hat{R}(f_{\mu})$ is much more complicated. As $n$ increases, the expression of $\hat{R}^n(f_{\mu})$ contains so many terms that the investigation becomes frustrating。
 
 The strategy to solve the problem is called *local potential approximation*, first proposed by Physicists. The basic idea is to truncate the whole function space to its subspace, which has finite dimension, ensuring that the loss is negligible.
 
 Explicitly, we truncate the whole function space to the subspace generated by Taylor series up to $N$-order, which is valid at least for $x$ in a neighbourhood of $0$. In addition, we shall have $f(0) = 1$ to keep the scale. Since the logistic map is parity symmetric, we shall restrict the function space to that with parity symmetry too. So, an element of the subspace can be represented by $1 + c_1 x^2 + c_2 x^4 + \cdots + c_N x^{2N}$. It's $\mathbb{R}^N$ with coordinate $c = (c_1, \ldots, c_N)$. Now, the complicated functional iteration becomes an iteration on simple Euclidean space. That is,
 
-$$\hat{R}: \mathbb{R}^N \to \mathbb{R}^N.$$
+$$\hat{R}_t: \mathbb{R}^N \to \mathbb{R}^N,$$
+
+where the subscript "t" hints for "truncated".
 """
 
 # ╔═╡ bd3a8de9-63c9-42f5-ba87-9c6b68fad116
@@ -275,7 +309,7 @@ function get_f(c)
 end
 
 # ╔═╡ 8b4c382d-97fc-422a-a690-ff9d2c886f5e
-function R̂(c)
+function R̂ₜ(c)
 	f = get_f(c)
 	α = get_α(f)
 	next_f(x) = -α * f(f(-x / α))
@@ -318,7 +352,7 @@ Now, we solve the fixed point at each iterative step by optimization method.
 
 # ╔═╡ 5ee5fc11-257f-420a-a22a-740d6d584fbb
 function RG_solver(init)
-	loss(c) = sum(abs.(R̂(c) .- c))
+	loss(c) = sum(abs.(R̂ₜ(c) .- c))
 	opt = optimize(loss, init)
 	minimizer(opt), converged(opt)
 end
@@ -346,13 +380,6 @@ This result is consistent with that given by ref[4], appendix F.
 For other given initial value of $c$, the result is different. And the $\alpha$ at the fixed point can be smaller than $1$ which is invalid and should be excluded.
 """
 
-# ╔═╡ b1ff8592-f5df-4b16-aaaf-f4b398f65ea1
-md"""
-### Self-similarity
-
-The result is that the logistic map at critical point, $f_{\mu^*}$, has $\hat{R}(f_{\mu^*}) \approx f_{\mu^*}$. But I don't know why.
-"""
-
 # ╔═╡ f6b1c5dd-1c03-4e4e-8080-fbaf75f6e1b7
 md"""
 ### Stability of the Fixed Point
@@ -374,12 +401,22 @@ function get_eigen_system(f, fixed_point)
 end
 
 # ╔═╡ b264e376-71a5-4854-9e7b-f190d9523a75
-get_eigen_system(R̂, fixed_point)
+get_eigen_system(R̂ₜ, fixed_point)
 
 # ╔═╡ 5c8a72df-aa32-4d93-8819-01f8845b6832
 md"""
 We find that the eigen-system is dominated by the eigen-value, denoted by $\delta$, about $4.7$. So the fixed point is unstable. Interestingly, this value is consistent with ref[1]. But the computation there is much more complicated and unsafe (with strange ansatz).
 """
+
+# ╔═╡ b1ff8592-f5df-4b16-aaaf-f4b398f65ea1
+md"""
+### Self-similarity
+
+The result is that the logistic map at critical point, $f_{\mu^*}$, has $\hat{R}(f_{\mu^*}) \approx f_{\mu^*}$. But I don't know why.
+"""
+
+# ╔═╡ ae60a720-bb63-43f6-9282-7c8f271334b2
+plot_iterative_map(LinRange(-1, 1, 1000), x -> logistic(1.40109, x), L"$f_{\mu^*}$")
 
 # ╔═╡ ab316a00-4cfd-499b-9cdd-992630b75810
 md"""
@@ -407,6 +444,7 @@ A famous instance is the turbulence, where, as the flux increases to the critica
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
 ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
+LaTeXStrings = "b964fa9f-0449-5b57-a5c2-d3ea65f4040f"
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 Optim = "429524aa-4258-5aef-a3af-852621145aeb"
 Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
@@ -416,6 +454,7 @@ TaylorSeries = "6aa5eb33-94cf-58f4-a9d0-e4b2c4fc25ea"
 
 [compat]
 ForwardDiff = "~0.10.35"
+LaTeXStrings = "~1.3.0"
 Optim = "~1.7.4"
 Plots = "~1.38.6"
 PlutoUI = "~0.7.50"
@@ -428,7 +467,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.8.5"
 manifest_format = "2.0"
-project_hash = "2ef292bbe1ca1f86bf6be2a0b604ed34dabe7f75"
+project_hash = "8a9749a93a67eed5a2e8184abeee2b241c4e2917"
 
 [[deps.AbstractPlutoDingetjes]]
 deps = ["Pkg"]
@@ -1529,7 +1568,6 @@ version = "1.4.1+0"
 # ╠═b2753165-501d-472c-8345-d3484c7f5bcd
 # ╠═b5f27652-523f-448d-89be-2c5b740d0e10
 # ╠═b1cde196-2cbb-47e4-9582-9b998207205f
-# ╠═9b4bb85d-aec8-4279-9681-1e88ac6c7a02
 # ╟─3361f969-b02e-431c-bde9-7439ff8b8e3e
 # ╟─71789ebe-32b9-4101-b4c2-b3eb13cfabb5
 # ╟─57886f5f-ce85-4e87-a182-afa323b8b224
@@ -1543,8 +1581,13 @@ version = "1.4.1+0"
 # ╠═5f0d985e-92a7-4e5f-9a3f-9253a4b610f7
 # ╠═2fd5f807-8a52-4964-b62f-55f18e469d73
 # ╠═9d58464c-1876-4b3c-a0af-c42033d8e862
-# ╠═e5284414-3f31-4edc-84cc-a0869728bdda
+# ╟─e5284414-3f31-4edc-84cc-a0869728bdda
 # ╟─debc320f-15db-484a-969b-9336398e7d1b
+# ╠═5f8081d4-552c-460e-baa1-a09c323857a5
+# ╟─27d36903-fe82-4188-b353-9140aa3280fb
+# ╠═a2f66f79-8e17-4d2a-a90c-c021358e065f
+# ╠═cc77c616-7b12-4a71-958e-f3eea0bf5df0
+# ╟─09732dbb-a7b1-4642-a190-aa3d6c6c46a5
 # ╟─1084b6c7-882d-45a5-a5c2-e9b0277d9a5f
 # ╠═bd3a8de9-63c9-42f5-ba87-9c6b68fad116
 # ╠═9b25f3d7-b251-4300-9805-b0fb2fc8b7c5
@@ -1559,13 +1602,14 @@ version = "1.4.1+0"
 # ╟─be38e5e4-9a68-42b7-9351-300dc1c83fcc
 # ╠═b9cd501d-948f-47d4-8e94-119f42be23bc
 # ╟─048580b6-8bbc-46fd-9d29-6e923aba4739
-# ╟─b1ff8592-f5df-4b16-aaaf-f4b398f65ea1
 # ╟─f6b1c5dd-1c03-4e4e-8080-fbaf75f6e1b7
 # ╠═610eae85-0573-44d8-b934-b9b3396e8bd5
 # ╠═60d9287b-df42-4c7c-9d48-22cfaf39f68a
 # ╠═296ff34f-4e59-44c9-a33d-87819a413180
 # ╠═b264e376-71a5-4854-9e7b-f190d9523a75
 # ╟─5c8a72df-aa32-4d93-8819-01f8845b6832
+# ╟─b1ff8592-f5df-4b16-aaaf-f4b398f65ea1
+# ╠═ae60a720-bb63-43f6-9282-7c8f271334b2
 # ╟─ab316a00-4cfd-499b-9cdd-992630b75810
 # ╟─b92951c1-8292-4397-9fb9-60b59cfa4a98
 # ╟─00000000-0000-0000-0000-000000000001
