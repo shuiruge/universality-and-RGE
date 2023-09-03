@@ -20,14 +20,14 @@ using Statistics: mean
 # ╔═╡ cf136e5f-e2e6-443f-820c-90633385e4e3
 using ForwardDiff: derivative
 
+# ╔═╡ 32f2fc05-d6c7-47b2-82d4-6fde3331dc29
+using Optim: optimize, minimizer, converged
+
 # ╔═╡ b2753165-501d-472c-8345-d3484c7f5bcd
 using Plots, PlutoUI, LaTeXStrings
 
 # ╔═╡ 9b25f3d7-b251-4300-9805-b0fb2fc8b7c5
 using TaylorSeries: Taylor1, getcoeff
-
-# ╔═╡ 813c97ab-0937-499b-85e1-f7e55b980d8c
-using Optim: optimize, minimizer, converged
 
 # ╔═╡ 610eae85-0573-44d8-b934-b9b3396e8bd5
 using ForwardDiff: jacobian
@@ -114,6 +114,13 @@ For an iterative map $f$, a fixed point $x^*$ is the element in domain such that
 Starting at the fixed point, we get a trivial iteration series $(x^*, x^*, \ldots)$. In this case, the Lyapunov exponent reduces to $\lambda = \ln \|\partial f (x^*)\|$. That is, the fixed point is stable if and only if $\|\partial f (x^*)\| < 1$.
 """
 
+# ╔═╡ ffc720f0-7e7e-4baa-9604-fb2e3292c9f1
+function find_fixed_point(f, init)
+	loss(x) = sum(abs.(f(x) .- x))
+	opt = optimize(loss, init)
+	minimizer(opt), converged(opt)
+end
+
 # ╔═╡ 0851d9a0-7432-44c5-a81f-a7fc941601bd
 md"""
 ## Logistic Map
@@ -133,6 +140,11 @@ function plot_iterative_map(x, f, label)
 	fig = plot()
 	plot!(fig, x, f, label=label)
 	plot!(fig, x, x, label="y = x"; linestyle=:dash)
+
+	fixed_point = find_fixed_point(x -> f.(x), [0.])[1][1]
+	df = derivative(f, fixed_point)
+	vline!(fig, [fixed_point], label=L"f^{\prime}(x^*) = %$(df)"; linestyle=:dash)
+
 	fig
 end
 
@@ -184,6 +196,18 @@ To quantitively describe this process, we need to study the composition process.
 First, we plot the $(f_{\mu} \circ f_{\mu}) (x)$ for $x \in [-1, 1]$:
 """
 
+# ╔═╡ 2ac385c9-b8d8-40e9-8f65-b72e3c0bfb3e
+@bind μ Slider(LinRange(0.7, 1.5, 100))
+
+# ╔═╡ 3361f969-b02e-431c-bde9-7439ff8b8e3e
+plot_iterative_map(LinRange(-1, 1, 1000), x -> logistic(μ, x), "Logistic Map")
+
+# ╔═╡ 91e3aaff-e724-40f8-82b0-be20ea2ee6e0
+plot_iterative_map(LinRange(-1, 1, 1000), x -> logistic(μ, logistic(μ, x)), L"$f^2_{\mu}$")
+
+# ╔═╡ 3af50850-50c3-44f0-a091-41501465b97a
+plot_iterative_map(LinRange(-1, 1, 1000), x -> logistic(μ, x), L"f_{\mu}")
+
 # ╔═╡ 8e42d108-fd41-4577-941e-7f9e4ca04b5a
 md"""
 We find that, around $x = 0$, the local shape looks like the original $f$. Indeed, if we zoom in (and flip) by a factor $-1 / \alpha$, where $\alpha > 1$, to the original scale, we will get the function with the same type of shape. By saying the orignal scale, we mean that $g_{\mu}(0) = 1$ with $g_{\mu}(x) := -\alpha (f_{\mu} \circ f_{\mu}) (x / (-\alpha))$, since $f_{\mu}(0) = 1$. This means the $\alpha = -1 / (f \circ f) (0)$.
@@ -200,11 +224,8 @@ function display_zoom_in(μ)
 	plot_iterative_map(LinRange(-1, 1, 1000), g, "Zoom-in")
 end
 
-# ╔═╡ 9d58464c-1876-4b3c-a0af-c42033d8e862
-# ╠═╡ disabled = true
-#=╠═╡
-@bind μ Slider(LinRange(0, 2, 100), default=1.4)
-  ╠═╡ =#
+# ╔═╡ e5284414-3f31-4edc-84cc-a0869728bdda
+display_zoom_in(μ)
 
 # ╔═╡ debc320f-15db-484a-969b-9336398e7d1b
 md"""
@@ -238,32 +259,26 @@ md"""
 Let's visualize the $f_{\mu}$, $\hat{R}(f_{\mu})$, $\hat{R}^2(f_{\mu})$, etc.
 """
 
-# ╔═╡ 3361f969-b02e-431c-bde9-7439ff8b8e3e
-plot_iterative_map(LinRange(-1, 1, 1000), x -> logistic(μ, x), "Logistic Map")
-
-# ╔═╡ 91e3aaff-e724-40f8-82b0-be20ea2ee6e0
-plot_iterative_map(LinRange(-1, 1, 1000), x -> logistic(μ, logistic(μ, x)), "Logistic 2")
-
-# ╔═╡ e5284414-3f31-4edc-84cc-a0869728bdda
-display_zoom_in(μ)
-
-# ╔═╡ a2f66f79-8e17-4d2a-a90c-c021358e065f
-function plot_R̂(order)
-	fig = plot()
-	x = LinRange(-1, 1, 1000)
-	f(x) = logistic(μ, x)
-	plot!(fig, x, x, label = "y = x", linestyle=:dash)
-	plot!(fig, x, f, label=L"$f_{\mu}$")
-
-	for i = 1:order
-		f = R̂(f)
-		plot!(fig, x, f, label=L"$\hat{R}^{%$i} (f_{\mu})")
+# ╔═╡ d5228648-6010-4058-899e-979cc32a620b
+function R̂(n, f)
+	if n == 0
+		f
+	else
+		R̂(R̂(n-1, f))
 	end
-	fig
 end
 
-# ╔═╡ 09732dbb-a7b1-4642-a190-aa3d6c6c46a5
-plot_R̂(3)
+# ╔═╡ 59d33908-eff5-435a-b1aa-f618c81c19ce
+plot_iterative_map(LinRange(-1, 1, 1000), R̂(0, x -> logistic(μ, x)), L"$f_{\mu}$")
+
+# ╔═╡ b537779b-ef5d-4525-a90a-af44be412c89
+plot_iterative_map(LinRange(-1, 1, 1000), R̂(1, x -> logistic(μ, x)), L"$R(f_{\mu})$")
+
+# ╔═╡ ea347cd7-f818-4645-a4cc-1018dfd6afde
+plot_iterative_map(LinRange(-1, 1, 1000), R̂(2, x -> logistic(μ, x)), L"$R^2(f_{\mu})$")
+
+# ╔═╡ cc003e7a-e1fa-43ce-b965-f3733b8a7e7d
+plot_iterative_map(LinRange(-1, 1, 1000), R̂(3, x -> logistic(μ, x)), L"$R^3(f_{\mu})$")
 
 # ╔═╡ 1084b6c7-882d-45a5-a5c2-e9b0277d9a5f
 md"""
@@ -336,11 +351,7 @@ Now, we solve the fixed point at each iterative step by optimization method.
 """
 
 # ╔═╡ 5ee5fc11-257f-420a-a22a-740d6d584fbb
-function RG_solver(init)
-	loss(c) = sum(abs.(R̂ₜ(c) .- c))
-	opt = optimize(loss, init)
-	minimizer(opt), converged(opt)
-end
+RG_solver(init) = find_fixed_point(R̂ₜ, init)
 
 # ╔═╡ 355fd36f-c41f-442a-89d6-4064fd4c6a91
 md"""
@@ -427,21 +438,6 @@ Notice that the previous analysis is quite general, regardless of the explicit e
 
 A famous instance is the turbulence, where, as the flux increases to the critical point, the same self-similar $\alpha$ emerges! We can predict the iterative series without knowing the underlying physics (Navier-Stokes equation)!
 """
-
-# ╔═╡ cc77c616-7b12-4a71-958e-f3eea0bf5df0
-@bind μ Slider(LinRange(1, 1.5, 100))
-
-# ╔═╡ b1cde196-2cbb-47e4-9582-9b998207205f
-# ╠═╡ disabled = true
-#=╠═╡
-@bind μ Slider(LinRange(0, 2, 100), default=1.)
-  ╠═╡ =#
-
-# ╔═╡ 2ac385c9-b8d8-40e9-8f65-b72e3c0bfb3e
-# ╠═╡ disabled = true
-#=╠═╡
-@bind μ Slider(LinRange(1.3, 1.5, 100))
-  ╠═╡ =#
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -1566,6 +1562,8 @@ version = "1.4.1+0"
 # ╠═4c77aff1-7f12-4225-a8ec-33132b3368e4
 # ╟─29fd9235-eab3-41bd-b922-f3ec5b31f836
 # ╟─fd6c2087-c18a-4238-8798-cefd94007d18
+# ╠═32f2fc05-d6c7-47b2-82d4-6fde3331dc29
+# ╠═ffc720f0-7e7e-4baa-9604-fb2e3292c9f1
 # ╟─0851d9a0-7432-44c5-a81f-a7fc941601bd
 # ╠═11c941cf-230b-4cc6-9ba9-e1fa800ff58b
 # ╠═b2753165-501d-472c-8345-d3484c7f5bcd
@@ -1579,7 +1577,8 @@ version = "1.4.1+0"
 # ╟─6a00ad7b-86b0-453f-be8e-350783973424
 # ╟─75c10caa-c0ad-441a-ab30-e5d9f4c2bde9
 # ╠═2ac385c9-b8d8-40e9-8f65-b72e3c0bfb3e
-# ╟─91e3aaff-e724-40f8-82b0-be20ea2ee6e0
+# ╠═91e3aaff-e724-40f8-82b0-be20ea2ee6e0
+# ╠═3af50850-50c3-44f0-a091-41501465b97a
 # ╟─8e42d108-fd41-4577-941e-7f9e4ca04b5a
 # ╠═5f0d985e-92a7-4e5f-9a3f-9253a4b610f7
 # ╠═2fd5f807-8a52-4964-b62f-55f18e469d73
@@ -1588,9 +1587,12 @@ version = "1.4.1+0"
 # ╟─debc320f-15db-484a-969b-9336398e7d1b
 # ╠═5f8081d4-552c-460e-baa1-a09c323857a5
 # ╟─27d36903-fe82-4188-b353-9140aa3280fb
-# ╠═a2f66f79-8e17-4d2a-a90c-c021358e065f
+# ╠═d5228648-6010-4058-899e-979cc32a620b
 # ╠═cc77c616-7b12-4a71-958e-f3eea0bf5df0
-# ╟─09732dbb-a7b1-4642-a190-aa3d6c6c46a5
+# ╠═59d33908-eff5-435a-b1aa-f618c81c19ce
+# ╠═b537779b-ef5d-4525-a90a-af44be412c89
+# ╠═ea347cd7-f818-4645-a4cc-1018dfd6afde
+# ╠═cc003e7a-e1fa-43ce-b965-f3733b8a7e7d
 # ╟─1084b6c7-882d-45a5-a5c2-e9b0277d9a5f
 # ╠═bd3a8de9-63c9-42f5-ba87-9c6b68fad116
 # ╠═9b25f3d7-b251-4300-9805-b0fb2fc8b7c5
@@ -1598,7 +1600,6 @@ version = "1.4.1+0"
 # ╟─cba518b1-7ed0-421d-8eeb-539e0b41b180
 # ╠═91e40b01-ef12-4740-acfa-efa7d73b958c
 # ╟─2d14c1ff-8ea6-45a9-b392-35f1fba82337
-# ╠═813c97ab-0937-499b-85e1-f7e55b980d8c
 # ╠═5ee5fc11-257f-420a-a22a-740d6d584fbb
 # ╟─355fd36f-c41f-442a-89d6-4064fd4c6a91
 # ╠═65a6fa8c-8c70-4390-a98e-8d1921bde604
