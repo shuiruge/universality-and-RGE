@@ -4,7 +4,7 @@
 
 <\body>
   Turbulence, for instance, has self-similarity at the critical point of
-  parameters. This self-similarity indicates that, when you zoom in a picture
+  parameters. This self-similarity indicates that, when you zoom-in a picture
   of turbulence, you should find that the original consists of many smaller
   turbulence each of which looks quite like the original. By saying \Plooks
   like\Q, we mean they share the same \Ppattern\Q. That is,
@@ -20,43 +20,55 @@
   corresponding Langevin dynamics.
 
   So, we should connect the operation on the picture of turbulence with the
-  Boltzmann machine that recognizes the patterns. This will give birth to
+  Boltzmann machine that recognizes the patterns. That is,
+  <with|font-shape|italic|the pictures before and after the operation should
+  obey the same Boltzmann machine.> As we will see, this will give birth to
   (non-perturbative) renormalization group.
 
-  First of all, we should declare the configuration space. A picture is
-  numerically described by a 2D array of float type. So, generally, a
-  configuration can be described by a real scalar field, say
+  First of all, we should declare what the configuration space should be. A
+  picture is numerically described by a 2D array of float type, the size of
+  which determines the precision of the picture. Generally, we should
+  consider the continuous version, while the discrete or array version can be
+  deduced from it, no matter what the precision is. So, a configuration
+  should be described by a real scalar field, say
   <math|\<varphi\><around*|(|x|)>>, where <math|x> in the region <math|V> and
   <math|\<varphi\><around*|(|x|)>\<in\>\<bbb-R\>> for each <math|x\<in\>V>.
 
-  Boltzmann machine describe the probability of configuration by a scalar
+  Boltzmann machine describes the probability of configuration by a scalar
   functional on the configuration space, called
   <with|font-series|bold|action> in physics, or
   <with|font-series|bold|energy> in machine learning, denoted by <math|S>.
-  The probability density functional (PDF) is given by
+  The probability density functional (PDF) of Boltzmann machine is given by
 
   <\equation*>
     <frac|\<mathe\><rsup|-S<around*|[|\<varphi\>|]>>|<big|prod><rsub|x\<in\>V><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<psi\><around*|(|x|)>|]>
     \<mathe\><rsup|-S<around*|[|\<psi\>|]>>>.
   </equation*>
 
-  Next, we perform the operation that zooms in the picture. It involves two
-  steps: cutting out a smaller region of the picture, and rescaling <math|x>.
-  The first step cuts out a sub-region <math|A\<subset\>V>, so that the outer
-  region of <math|A> is not cared. To describe the density of probability
-  within <math|A>, we should integrate out the component of configuration
-  which is out of <math|A>, that is, <math|<around*|{|\<varphi\><around*|(|x|)>\|x\<in\>V\\A|}>>.
-  This gives another <with|font-shape|italic|form> of PDF, which is again
-  given by another Boltzmann machine with configuration sits on <math|A> and
-  with a new action, denoted by <math|S<rsub|A>>. That is,
+  Next, we perform the operation that zooms-in the picture. It cuts out a
+  smaller region of the picture as a whole. Let it cut out a sub-region
+  <math|A\<subset\>V>, so that the outer region of <math|A> is omitted. To
+  describe the density of probability within <math|A>, we should integrate
+  out the components of configuration that is out of <math|A>, that is,
+  <math|<around*|{|\<varphi\><around*|(|x|)>\|x\<in\>V\\A|}>>. Explicitly,
+
+  <\equation*>
+    <big|prod><rsub|x\<in\>V\\A><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<varphi\><around*|(|x|)>|]><frac|\<mathe\><rsup|-S<around*|[|\<varphi\>|]>>|<big|prod><rsub|x\<in\>V><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<psi\><around*|(|x|)>|]>
+    \<mathe\><rsup|-S<around*|[|\<psi\>|]>>>.
+  </equation*>
+
+  On the other hand, the configuration of the picture after the operation
+  should also be described by a Boltzmann machine, which gives the same PDF
+  as the previously integrated. So, we have
 
   <\equation*>
     <big|prod><rsub|x\<in\>V\\A><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<varphi\><around*|(|x|)>|]><frac|\<mathe\><rsup|-S<around*|[|\<varphi\>|]>>|<big|prod><rsub|x\<in\>V><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<psi\><around*|(|x|)>|]>
     \<mathe\><rsup|-S<around*|[|\<psi\>|]>>>=<frac|\<mathe\><rsup|-S<rsub|A><around*|[|\<varphi\>|]>>|<big|prod><rsub|x\<in\>A><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<psi\><around*|(|x|)>|]>
-    \<mathe\><rsup|-S<rsub|A><around*|[|\<psi\>|]>>>.
+    \<mathe\><rsup|-S<rsub|A><around*|[|\<psi\>|]>>>,
   </equation*>
 
-  It has the solution
+  where in the right hand side, <math|S<rsub|A>> is the action functional of
+  the new Boltzmann machine. This equation has the solution
 
   <\equation*>
     \<mathe\><rsup|-S<rsub|A><around*|[|\<varphi\>|]>>=<big|prod><rsub|x\<in\>V\\A><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<varphi\><around*|(|x|)>|]>
@@ -77,13 +89,9 @@
   be simplified by linear approximation, which turns to be the
   renormalizaiton group equation.
 
-  The second step of operation, i.e. rescaling <math|x>, is taken within the
-  action functional itself.
-
-  By the previous discussion, the same in pattern means the same in PDF given
-  by Boltzmann machine. This implies the equality of actional functional,
-  before and after the operation that zooms in the picture. That is,
-  <math|S=S<rsub|A>>.
+  By the previous discussion, the same in pattern means the same in Boltzmann
+  machine. This implies the equality of actional functional, before and after
+  zooming-in the picture. That is, <math|S=S<rsub|A>>.
 </body>
 
 <\initial>
@@ -95,8 +103,6 @@
 <\references>
   <\collection>
     <associate|footnote-1|<tuple|1|1>>
-    <associate|footnote-2|<tuple|2|?>>
     <associate|footnr-1|<tuple|1|1>>
-    <associate|footnr-2|<tuple|2|?>>
   </collection>
 </references>
