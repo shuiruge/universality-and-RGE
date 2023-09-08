@@ -3,6 +3,9 @@
 <style|generic>
 
 <\body>
+  <section|Boltzmann Machine Connects Self-Similarity and Renormalzation
+  Group>
+
   Turbulence, for instance, has self-similarity at the critical point of
   parameters. This self-similarity indicates that, when you zoom-in a picture
   of turbulence, you should find that the original consists of many smaller
@@ -92,6 +95,82 @@
   By the previous discussion, the same in pattern means the same in Boltzmann
   machine. This implies the equality of actional functional, before and after
   zooming-in the picture. That is, <math|S=S<rsub|A>>.
+
+  <section|Convolutional Neural Network: Continuous Version>
+
+  Convolutional neural network is invented for processing vision related
+  tasks, such as picture classification. It has a feedforward architecture
+  which involves three kinds of basic layer: convolutional layer, pooling
+  layer, and dense layer. Details can be found in
+  <hlink|wikipedia|https://en.wikipedia.org/wiki/Convolutional_neural_network>.
+  Here we provide a simple strategy to generalize the usual discrete
+  convolutional neural network to its continuous version. With this
+  continuous version, we can show the qualitive fact (maybe general for all
+  possible strategy of such generalization) that the convolutional neural
+  network is non-local.
+
+  <subsection|Convolutional Layer>
+
+  Naturally, a convolutional layer can become continuous by convolution.
+  Given two functions <math|f> and <math|g>, convolution is defined by
+
+  <\equation*>
+    <around*|(|f\<ast\>g|)><around*|(|x|)>\<assign\><big|int><rsub|\<bbb-R\><rsup|N>>\<mathd\>y
+    f<around*|(|y|)> g<around*|(|x-y|)>.
+  </equation*>
+
+  In convolutional layer, filters can be described by a family of funcitons
+  in Schwartz space, <math|<around*|{|f<rsub|i><around*|(|x|)>\|i\<in\>J|}>>.
+  And the manipulation on input image, described by a scalar field
+  <math|\<varphi\>>, by a convolutional layer is
+
+  <\equation*>
+    \<varphi\>\<rightarrow\><around*|{|f<rsub|i>\<ast\>\<varphi\>\|i\<in\>J|}>,
+  </equation*>
+
+  each element of which is a scalar field, or an image.
+
+  <subsection|Pooling Layer>
+
+  Pooling layer, if smooth, can be realized by smearing. So, given a
+  smearning function <math|P> in Schwartz space, the manipulation on input
+  image by a pooling layer is
+
+  <\equation*>
+    \<varphi\>\<rightarrow\>P\<ast\>\<varphi\>.
+  </equation*>
+
+  <subsection|Dense Layer>
+
+  Finally, the dense layer deals with a set of images. For each image, the
+  weight is described by a kernel <math|W<around*|(|x,y|)>>. So, the weight
+  has three indices: the <math|x>, the <math|y>, and an index <math|i> for
+  labelling image. So, the manipulation on input set of images by dense layer
+  is
+
+  <\equation*>
+    <around*|{|\<varphi\><rsub|i>\|i\<in\>J|}>\<rightarrow\>\<sigma\><around*|(|<big|sum><rsub|i\<in\>J><big|int><rsub|\<bbb-R\><rsup|N>>\<mathd\>y
+    W<rsub|i><around*|(|x,y|)> \<varphi\><rsub|i><around*|(|y|)>|)>,
+  </equation*>
+
+  where <math|\<sigma\>> is a given non-linear function, such as <math|tanh>
+  or sigmoid function.
+
+  <subsection|Convolutional Neural Network Is Non-Local>
+
+  The total manipulation on the input image, or scalar field, can be seen as
+  a functional. But, this functional, denoted as <math|S>, is non-local, that
+  is, there is not such a local operator <math|L> <\footnote>
+    Such as <math|<around*|(|1/2|)><around*|(|\<partial\>\<varphi\>|)><rsup|2>-V<around*|(|\<varphi\>|)>>.
+  </footnote> such that <math|S=<big|int><rsub|\<bbb-R\><rsup|N>>\<mathd\>x
+  L<around*|(|\<varphi\>|)><around*|(|x|)>>. In our expression, lots of
+  integrations are involved and nested, so that the final result cannot be
+  local.
+
+  This means, if we use (continuous) convolutional neural network as the
+  action functional, the renormalization group equation cannot be solved by
+  local potential approximation, which demands that the action functional
+  should be approximately local.
 </body>
 
 <\initial>
@@ -102,7 +181,15 @@
 
 <\references>
   <\collection>
+    <associate|auto-1|<tuple|1|?>>
+    <associate|auto-2|<tuple|2|?>>
+    <associate|auto-3|<tuple|2.1|?>>
+    <associate|auto-4|<tuple|2.2|?>>
+    <associate|auto-5|<tuple|2.3|?>>
+    <associate|auto-6|<tuple|2.4|?>>
     <associate|footnote-1|<tuple|1|1>>
+    <associate|footnote-2|<tuple|2|?>>
     <associate|footnr-1|<tuple|1|1>>
+    <associate|footnr-2|<tuple|2|?>>
   </collection>
 </references>
