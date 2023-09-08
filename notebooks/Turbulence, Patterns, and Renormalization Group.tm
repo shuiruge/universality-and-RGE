@@ -160,10 +160,11 @@
 
   The total manipulation on the input image, or scalar field, can be seen as
   a functional. But, this functional is non-local, that is, it cannot be
-  written as the form <math|<big|int><rsub|\<bbb-R\><rsup|N>>\<mathd\>x
-  L<around*|(|\<varphi\><around*|(|x|)>,\<partial\>\<varphi\><around*|(|x|)>,\<partial\><rsup|2>\<varphi\><around*|(|x|)>,\<ldots\>|)>>.
-  In convolutional neural network, lots of integrations are involved and
-  nested, so that the final expression cannot be local.
+  written as <math|<big|int><rsub|\<bbb-R\><rsup|N>>\<mathd\>x
+  L<around*|(|\<varphi\><around*|(|x|)>,\<partial\>\<varphi\><around*|(|x|)>,\<partial\><rsup|2>\<varphi\><around*|(|x|)>,\<ldots\>|)>>
+  for any function <math|L>. In convolutional neural network, lots of
+  integrations are involved and nested, so that the final expression cannot
+  be local.
 
   This means, if we use (continuous) convolutional neural network as the
   action functional, the renormalization group equation cannot be solved by
@@ -186,9 +187,7 @@
     <associate|auto-5|<tuple|2.3|2>>
     <associate|auto-6|<tuple|2.4|2>>
     <associate|footnote-1|<tuple|1|1>>
-    <associate|footnote-2|<tuple|2|2>>
     <associate|footnr-1|<tuple|1|1>>
-    <associate|footnr-2|<tuple|2|2>>
   </collection>
 </references>
 
