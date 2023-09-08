@@ -159,13 +159,11 @@
   <subsection|Convolutional Neural Network Is Non-Local>
 
   The total manipulation on the input image, or scalar field, can be seen as
-  a functional. But, this functional, denoted as <math|S>, is non-local, that
-  is, there is not such a local operator <math|L> <\footnote>
-    Such as <math|<around*|(|1/2|)><around*|(|\<partial\>\<varphi\>|)><rsup|2>-V<around*|(|\<varphi\>|)>>.
-  </footnote> such that <math|S=<big|int><rsub|\<bbb-R\><rsup|N>>\<mathd\>x
-  L<around*|(|\<varphi\>|)><around*|(|x|)>>. In our expression, lots of
-  integrations are involved and nested, so that the final result cannot be
-  local.
+  a functional. But, this functional is non-local, that is, it cannot be
+  written as the form <math|<big|int><rsub|\<bbb-R\><rsup|N>>\<mathd\>x
+  L<around*|(|\<varphi\><around*|(|x|)>,\<partial\>\<varphi\><around*|(|x|)>,\<partial\><rsup|2>\<varphi\><around*|(|x|)>,\<ldots\>|)>>.
+  In convolutional neural network, lots of integrations are involved and
+  nested, so that the final expression cannot be local.
 
   This means, if we use (continuous) convolutional neural network as the
   action functional, the renormalization group equation cannot be solved by
@@ -181,15 +179,47 @@
 
 <\references>
   <\collection>
-    <associate|auto-1|<tuple|1|?>>
-    <associate|auto-2|<tuple|2|?>>
-    <associate|auto-3|<tuple|2.1|?>>
-    <associate|auto-4|<tuple|2.2|?>>
-    <associate|auto-5|<tuple|2.3|?>>
-    <associate|auto-6|<tuple|2.4|?>>
+    <associate|auto-1|<tuple|1|1>>
+    <associate|auto-2|<tuple|2|2>>
+    <associate|auto-3|<tuple|2.1|2>>
+    <associate|auto-4|<tuple|2.2|2>>
+    <associate|auto-5|<tuple|2.3|2>>
+    <associate|auto-6|<tuple|2.4|2>>
     <associate|footnote-1|<tuple|1|1>>
-    <associate|footnote-2|<tuple|2|?>>
+    <associate|footnote-2|<tuple|2|2>>
     <associate|footnr-1|<tuple|1|1>>
-    <associate|footnr-2|<tuple|2|?>>
+    <associate|footnr-2|<tuple|2|2>>
   </collection>
 </references>
+
+<\auxiliary>
+  <\collection>
+    <\associate|toc>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Boltzmann
+      Machine Connects Self-Similarity and Renormalzation Group>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-1><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|2<space|2spc>Convolutional
+      Neural Network: Continuous Version>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-2><vspace|0.5fn>
+
+      <with|par-left|<quote|1tab>|2.1<space|2spc>Convolutional Layer
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-3>>
+
+      <with|par-left|<quote|1tab>|2.2<space|2spc>Pooling Layer
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-4>>
+
+      <with|par-left|<quote|1tab>|2.3<space|2spc>Dense Layer
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-5>>
+
+      <with|par-left|<quote|1tab>|2.4<space|2spc>Convolutional Neural Network
+      Is Non-Local <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-6>>
+    </associate>
+  </collection>
+</auxiliary>
