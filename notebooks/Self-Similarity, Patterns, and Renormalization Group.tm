@@ -6,13 +6,16 @@
   <section|Boltzmann Machine Connects Self-Similarity and Renormalzation
   Group>
 
-  Turbulence, for instance, has self-similarity at the critical point of
-  parameters. This self-similarity indicates that, when you zoom-in a picture
-  of turbulence, you should find that the original consists of many smaller
-  turbulence each of which looks quite like the original. By saying \Plooks
-  like\Q, we mean they share the same \Ppattern\Q. That is,
-  <with|font-shape|italic|they are not exactly the same, but same in pattern,
-  which is recognized by our brain.>
+  <subsection|The Basic Idea>
+
+  There are many kinds of self-similarity in Nature. Turbulence, for
+  instance, has self-similarity at the critical point of parameters. This
+  self-similarity indicates that, when you zoom-in a picture of turbulence,
+  you should find that the original consists of many smaller turbulence each
+  of which looks quite like the original. By saying \Plooks like\Q, we mean
+  they share the same \Ppattern\Q. That is, <with|font-shape|italic|they are
+  not exactly the same, but same in pattern, which is recognized by our
+  brain.>
 
   Pattern recognization can also be made by Boltzmann machine <\footnote>
     An example of deep Boltzmann machine used for pattern abstraction on the
@@ -96,6 +99,106 @@
   machine. This implies the equality of actional functional, before and after
   zooming-in the picture. That is, <math|S=S<rsub|A>>.
 
+  <subsection|Renormalization Group Equation>
+
+  We can continuously marginalize the region between <math|V> and <math|A>.
+  Explicitly, let <math|t\<in\><around*|[|0,1|]>> as a continuous parameter.
+  Consider a continuously changed region <math|A<rprime|'><around*|(|t|)>>,
+  so that <math|A<rprime|'><around*|(|0|)>=V> and
+  <math|A<rprime|'><around*|(|1|)>=A>, and that
+  <math|A<rprime|'><around*|(|t<rsub|1>|)>\<subset\>A<rprime|'><around*|(|t<rsub|0>|)>>
+  as long as <math|t<rsub|1>\<gtr\>t<rsub|0>>. <math|>This makes the
+  effective action function <math|S<rsub|A<rprime|'>>> continuously change
+  from <math|S> to <math|S<rsub|A>>, depending on <math|t>. This gives birth
+  to a renormalization group equation, which is a functional autonomous
+  differential equation, of <math|\<mathd\>S<rsub|A<rprime|'>>/\<mathd\>t>.
+
+  How is self-similarity characterized by this renormalization group
+  equation? An educated guess is that self-similarity is a limit circle of
+  this autonomous differential equation. It starts at a point and travels
+  along a circle. Finally it goes back to the starting point: the
+  self-similarity. And then, it starts the same trip again.
+
+  <subsection|Continuous Symmetries and Gauge Fixing>
+
+  We may have translational symmetry. Let relaxation
+  <math|\<varphi\>\<rightarrow\>\<varphi\><rsub|\<ast\>>>, which
+  <math|\<varphi\><rsub|\<ast\>>> denotes the attractor on the area of which
+  <math|\<varphi\>> sits. Let <math|\<psi\><around*|(|x|)>\<assign\>\<varphi\><around*|(|x+z|)>>
+  for constant <math|z>, and relaxation <math|\<psi\>\<rightarrow\>\<psi\><rsub|\<ast\>>>.
+  If translational symmetry holds, we shoud expect that
+  <math|\<psi\><rsub|\<ast\>><around*|(|x|)>=\<varphi\><rsub|\<ast\>><around*|(|x+z|)>>
+  and that <math|S<around*|[|\<varphi\><rsub|\<ast\>>|]>=S<around*|[|\<psi\><rsub|\<ast\>>|]>>.
+  This implies a gauge problem: the extremum of <math|S> is not a single
+  value, but a sub-manifold along the symmetry.
+
+  The same holds for any other continous symmetry, such as rotational
+  symmetry.
+
+  To deal with this gauge problem, consider a Boltzmann machine that is to
+  learn a rectangle. It will relax a perturbed rectangle to the \Pstandard\Q
+  one, the learned pattern. This learning task encounters the translational
+  symmetry: a rectangle is still the same rectangle after being
+  translationally moved. The method to solve this problem is gauge fixing.
+  For instance, the dataset is a colleciton of hand-drawn rectangle images,
+  and <math|\<varphi\>> represents the gray level in range
+  <math|<around*|[|0,1|]>>. We are to move all images in dataset to be
+  centered at the original. This can be done by shifting
+  <math|x\<rightarrow\>x-m> where <math|m\<assign\>mean<around*|(|<around*|{|x\|\<varphi\><around*|(|x|)>\<gtr\>0|}>|)>>.
+  Because of central limit theorem, this <math|m> is stable for random
+  perturbation. After this shifting, all images are properly centered, and
+  the gauge is fixed.
+
+  This can be seen as a re-definition of coordinates. Indeed, in the case of
+  rotational symmetry, we re-define the Cartesian coordinates to polar
+  coordinates. As in the case of translational symmetry, this re-definition
+  of coordinates fixes the gauge caused by rotational symmetry.
+
+  <section|Construction of Action Functional>
+
+  <subsection|Vanilla Boltzmann Machine with Locality>
+
+  We are to consider the explicit form of the action functional for the
+  pictures of, for instance, turbulence. For vanilla Boltzmann machine, the
+  action functional would be
+
+  <\equation*>
+    S<around*|[|\<varphi\>|]>=<big|int>\<mathd\>x J<around*|(|x|)>
+    \<varphi\><around*|(|x|)>+<big|int>\<mathd\>x \<mathd\>y
+    \<varphi\><around*|(|x|)> W<around*|(|x,y|)> \<varphi\><around*|(|y|)>
+  </equation*>
+
+  for some bias <math|J> and kernel <math|W>. In the case of field theory,
+  the kernel would be <math|W<around*|(|x,y|)>=-\<delta\><around*|(|x,y|)>\<times\><around*|[|<around*|(|1/2|)>
+  <around*|(|\<partial\><rsup|2>/\<partial\>y<rsup|2>|)>+V<around*|(|y|)>|]>>
+  for some \Pmass function\Q <math|V>. This form of kernel is local which
+  means <math|W<around*|(|x,y|)>\<propto\>\<delta\><around*|(|x,y|)>>. Under
+  the locality assumption, we have the most general form of kernel:
+  <math|W<around*|(|x,y|)>=\<delta\><around*|(|x,y|)> w<around*|(|y|)>>,
+  where
+
+  <\equation*>
+    w<around*|(|x|)>=a<rsub|0><around*|(|x|)>+a<rsub|1><around*|(|x|)>
+    \<partial\><rsup|2>+\<cdots\>+a<rsub|n><around*|(|x|)>\<partial\><rsup|2n>+\<cdots\>.
+  </equation*>
+
+  In this case, action functional is reduced to
+
+  <\equation*>
+    S<around*|[|\<varphi\>|]>=<big|int>\<mathd\>x
+    <around*|[|J<around*|(|x|)>\<varphi\><around*|(|x|)>+a<rsub|0><around*|(|x|)>
+    \<varphi\><rsup|2><around*|(|x|)>+a<rsub|1><around*|(|x|)>\<varphi\><around*|(|x|)>
+    \<partial\><rsup|2>\<varphi\><around*|(|x|)>+\<cdots\>|]>
+  </equation*>
+
+  The higher derivatives are involved, the larger range of \Pconnections\Q
+  between the \Pneurons\Q. <\footnote>
+    Here the words \Pconnection\Q and \Pneuron\Q come from the analogy of
+    Boltzmann machine with human brain. The <math|W<around*|(|x,y|)>> is
+    analogy to the weight between the neurons at <math|x> and <math|y>.
+  </footnote> Indeed, a function can be recovered in a larger range if we
+  have higher derivatives on the origin.
+
   <section|Convolutional Neural Network: Continuous Version>
 
   Convolutional neural network is invented for processing vision related
@@ -161,7 +264,7 @@
   The total manipulation on the input image, or scalar field, can be seen as
   a functional. But, this functional is non-local, that is, it cannot be
   written as <math|<big|int><rsub|\<bbb-R\><rsup|N>>\<mathd\>x
-  L<around*|(|\<varphi\><around*|(|x|)>,\<partial\>\<varphi\><around*|(|x|)>,\<partial\><rsup|2>\<varphi\><around*|(|x|)>,\<ldots\>|)>>
+  L<around*|(|x,\<varphi\><around*|(|x|)>,\<partial\>\<varphi\><around*|(|x|)>,\<partial\><rsup|2>\<varphi\><around*|(|x|)>,\<ldots\>|)>>
   for any function <math|L>. In convolutional neural network, lots of
   integrations are involved and nested, so that the final expression cannot
   be local.
@@ -181,13 +284,21 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-2|<tuple|2|2>>
-    <associate|auto-3|<tuple|2.1|2>>
-    <associate|auto-4|<tuple|2.2|2>>
-    <associate|auto-5|<tuple|2.3|2>>
-    <associate|auto-6|<tuple|2.4|2>>
+    <associate|auto-10|<tuple|3.3|?>>
+    <associate|auto-11|<tuple|3.4|?>>
+    <associate|auto-12|<tuple|3.5|?>>
+    <associate|auto-2|<tuple|1.1|2>>
+    <associate|auto-3|<tuple|1.2|2>>
+    <associate|auto-4|<tuple|1.3|2>>
+    <associate|auto-5|<tuple|2|2>>
+    <associate|auto-6|<tuple|2.1|3>>
+    <associate|auto-7|<tuple|3|3>>
+    <associate|auto-8|<tuple|3.1|3>>
+    <associate|auto-9|<tuple|3.2|3>>
     <associate|footnote-1|<tuple|1|1>>
+    <associate|footnote-2|<tuple|2|2>>
     <associate|footnr-1|<tuple|1|1>>
+    <associate|footnr-2|<tuple|2|2>>
   </collection>
 </references>
 
@@ -199,26 +310,38 @@
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-1><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|2<space|2spc>Convolutional
-      Neural Network: Continuous Version>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|2<space|2spc>>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-2><vspace|0.5fn>
 
-      <with|par-left|<quote|1tab>|2.1<space|2spc>Convolutional Layer
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|2.1<space|2spc>Vanilla Boltzmann Machine
+      with Locality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-3>>
 
-      <with|par-left|<quote|1tab>|2.2<space|2spc>Pooling Layer
+      <with|par-left|<quote|1tab>|2.2<space|2spc>Continuous Symmetries
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <with|par-left|<quote|1tab>|2.3<space|2spc>Dense Layer
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|3<space|2spc>Convolutional
+      Neural Network: Continuous Version>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-5>>
+      <no-break><pageref|auto-5><vspace|0.5fn>
 
-      <with|par-left|<quote|1tab>|2.4<space|2spc>Convolutional Neural Network
-      Is Non-Local <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|3.1<space|2spc>Convolutional Layer
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
+
+      <with|par-left|<quote|1tab>|3.2<space|2spc>Pooling Layer
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-7>>
+
+      <with|par-left|<quote|1tab>|3.3<space|2spc>Dense Layer
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-8>>
+
+      <with|par-left|<quote|1tab>|3.4<space|2spc>Convolutional Neural Network
+      Is Non-Local <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-9>>
     </associate>
   </collection>
 </auxiliary>
