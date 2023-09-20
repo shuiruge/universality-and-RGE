@@ -253,137 +253,30 @@
   Plugging this expansion back, we find that the first two terms furnishes a
   functional Gaussian integral
 
-  <\small>
-    <\equation*>
-      C <big|prod><rsub|x\<in\>\<mathd\>V<around*|(|t|)>><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<phi\><around*|(|x|)>|]>
-      exp<around*|(|- <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
-      <frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]>\<phi\><around*|(|x|)>-<frac|1|2><big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
-      <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x<rprime|'>
-      <frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>\<delta\>\<phi\><around*|(|x<rprime|'>|)>><around*|[|\<varphi\>,0|]>\<phi\><around*|(|x|)>\<phi\><around*|(|x<rprime|'>|)>|)>,
-    </equation*>
-  </small>
+  <\equation*>
+    <small|C <big|prod><rsub|x\<in\>\<mathd\>V<around*|(|t|)>><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<phi\><around*|(|x|)>|]>
+    exp<around*|(|- <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
+    <frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]>\<phi\><around*|(|x|)>-<frac|1|2><big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
+    <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x<rprime|'>
+    <frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>\<delta\>\<phi\><around*|(|x<rprime|'>|)>><around*|[|\<varphi\>,0|]>\<phi\><around*|(|x|)>\<phi\><around*|(|x<rprime|'>|)>|)>,>
+  </equation*>
 
   which results in <\footnote>
-    To obtain this result, we need several tools. The first is <math|\<phi\>>
-    sits in a sub-Hilbert-space on which <math|<around*|{|\|
-    x\<rangle\>\|x\<in\>\<mathd\>V<around*|(|t|)>|}>> is complete, meaning
-    that <math|<big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x\|
-    x\<rangle\>\<langle\> x\|=1> on this sub-Hilbert-space. This helps
-    convert from continuous spectrum to discrete spectrum. The second is
-    multi-dimensional Gaussian integral
-
-    <\equation*>
-      <big|prod><rsub|\<alpha\>=1><rsup|n><big|int><rsub|\<bbb-R\>>\<mathd\>x<rsup|\<alpha\>>
-      exp<around*|(|-<frac|1|2>A<rsub|\<alpha\>\<beta\>> x<rsup|\<alpha\>>
-      x<rsup|\<beta\>>+b<rsub|\<alpha\>> x<rsup|\<alpha\>>|)>=<sqrt|<frac|<around*|(|2\<mathpi\>|)><rsup|n>|det<around*|(|A|)>>>exp<around*|(|<frac|1|2><around*|(|A<rsup|-1>|)><rsup|\<alpha\>\<beta\>>
-      b<rsub|\<alpha\>> b<rsub|\<beta\>>|)>,
-    </equation*>
-
-    where <math|A> and <math|b> can be complex. The third is
-
-    <\equation*>
-      det<around*|(|A|)>=tr ln<around*|(|A|)>.
-    </equation*>
-
-    And finally, for any unitary matrix <math|U>,
-
-    <\equation*>
-      tr ln<around*|(|U<rsup|\<dagger\>>A U|)>=U<rsup|\<dagger\>> tr
-      ln<around*|(|A|)> U,
-    </equation*>
-
-    meaning that <math|tr ln<around*|(|A|)>> is independent of
-    representation. Now, we start to integrate this functional Gaussian
-    integral, by first converting the discrete spectrum <math|<around*|{|\|
-    \<alpha\>\<rangle\>\|\<alpha\>\<in\>I|}>> from <math|\| x\<rangle\>>,
-    which results in <math|\<phi\><around*|(|x|)>\<assign\>\<langle\>
-    x\|\<phi\> \<rangle\>=<big|sum><rsub|\<alpha\>>\<langle\> x\|\<alpha\>
-    \<rangle\>\<langle\> \<alpha\>\| \<phi\>\<rangle\>\<backassign\><big|sum><rsub|\<alpha\>>\<langle\>
-    x\|\<alpha\> \<rangle\> \<phi\><rsup|\<alpha\>>> where we suppose that
-    <math|\<phi\><rsup|\<alpha\>>> is real for each <math|\<alpha\>>,
-
-    <\align>
-      <tformat|<table|<row|<cell|>|<cell|-
-      <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
-      <frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]>\<phi\><around*|(|x|)>>>|<row|<cell|<around*|{|<text|<math|\<phi\>>
-      is real>|}>=>|<cell|- <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
-      <frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]>\<phi\><rsup|\<ast\>><around*|(|x|)>>>|<row|<cell|<around*|{|<big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
-      \|x\<rangle\>\<langle\> x\|=1|}>=>|<cell|-\<langle\> \<phi\>\|
-      <frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\>><around*|[|\<varphi\>,0|]>\<rangle\>>>|<row|<cell|<around*|{|<big|sum><rsub|\<alpha\>>\|\<alpha\>
-      \<rangle\>\<langle\>\<alpha\> \|=1|}>=>|<cell|-<frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><rsup|\<alpha\>>><around*|[|\<varphi\>,0|]>
-      \<phi\><rsup|\<ast\>><rsup|\<alpha\>>>>|<row|<cell|<around*|{|<text|<math|\<phi\><rsup|\<alpha\>>>
-      is real>|}>=>|<cell|-<frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><rsup|\<alpha\>>><around*|[|\<varphi\>,0|]>
-      \<phi\><rsup|\<alpha\>>,>>>>
-    </align>
-
-    and
-
-    <\align>
-      <tformat|<table|<row|<cell|>|<cell|-<frac|1|2><big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
-      <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x<rprime|'>
-      <frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>\<delta\>\<phi\><around*|(|x<rprime|'>|)>><around*|[|\<varphi\>,0|]>\<phi\><around*|(|x|)>\<phi\><around*|(|x<rprime|'>|)>>>|<row|<cell|<around*|{|<big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
-      \|x\<rangle\>\<langle\> x\|=1|}>=>|<cell|-<frac|1|2>\<langle\>\<phi\>
-      \|<frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\>\<delta\>\<phi\>><around*|[|\<varphi\>,0|]>\|
-      \<phi\>\<rangle\>>>|<row|<cell|<around*|{|<big|sum><rsub|\<alpha\>>\|\<alpha\>
-      \<rangle\>\<langle\>\<alpha\> \|=1|}>=>|<cell|-<frac|1|2><frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><rsup|\<alpha\>>\<delta\>\<phi\><rsup|\<beta\>>><around*|[|\<varphi\>,0|]>
-      \<phi\><rsup|\<ast\>><rsup|\<alpha\>>\<phi\><rsup|\<beta\>>>>|<row|<cell|<around*|{|<text|<math|\<phi\><rsup|\<alpha\>>>
-      is real>|}>>|<cell|-<frac|1|2><frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><rsup|\<alpha\>>\<delta\>\<phi\><rsup|\<beta\>>><around*|[|\<varphi\>,0|]>
-      \<phi\><rsup|\<alpha\>>\<phi\><rsup|\<beta\>>.>>>>
-    </align>
-
-    With these, the integral turns to be
-
-    <\equation*>
-      C<rprime|'> <big|prod><rsub|\<alpha\>=1><rsup|n><big|int><rsub|\<bbb-R\>>\<mathd\>\<phi\><rsup|\<alpha\>>
-      exp<around*|(|-<frac|1|2><frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><rsup|\<alpha\>>\<delta\>\<phi\><rsup|\<beta\>>><around*|[|\<varphi\>,0|]>
-      \<phi\><rsup|\<alpha\>>\<phi\><rsup|\<beta\>>-<frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><rsup|\<alpha\>>><around*|[|\<varphi\>,0|]>\<phi\><rsup|\<alpha\>>|)>,
-    </equation*>
-
-    where <math|C<rprime|'>\<assign\>C det<around*|(|U|)>> and unitary matrix
-    <math|U<rsub|x,\<alpha\>>\<assign\>\<langle\> x\|\<alpha\> \<rangle\>>.
-    It gives
-
-    <\equation*>
-      C<rprime|''> exp<around*|(|<frac|1|2>
-      \ <frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><rsup|\<alpha\>>><around*|[|\<varphi\>,0|]><around*|[|<around*|(|<frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\>\<delta\>\<phi\>><around*|[|\<varphi\>,0|]>|)><rsup|-1>|]><rsup|\<alpha\>\<beta\>><frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><rsup|\<beta\>>><around*|[|\<varphi\>,0|]>-<frac|1|2>
-      tr ln<around*|(|<frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\>\<delta\>\<phi\>><around*|[|\<varphi\>,0|]>|)>|)>,
-    </equation*>
-
-    where <math|C<rprime|''>\<assign\><sqrt|<around*|(|2\<mathpi\>|)><rsup|n>>
-    C<rprime|'>>. The final step is converting from <math|\|
-    \<alpha\>\<rangle\>> back to <math|\| x\<rangle\>>. The first term
-    naturally goes to
-
-    <\equation*>
-      <frac|1|2> \ <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
-      <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x<rprime|'>
-      <frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]><around*|(|<frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\>\<delta\>\<phi\>><around*|[|\<varphi\>,0|]>|)><rsup|-1><around*|(|x,x<rprime|'>|)><frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x<rprime|'>|)>><around*|[|\<varphi\>,0|]>.
-    </equation*>
-
-    And with the aid of formula <math|tr ln<around*|(|U<rsup|\<dagger\>>A
-    U|)>=U<rsup|\<dagger\>> tr ln<around*|(|A|)> U>, we can move <math|U>
-    inside the logorithm out of the trace, which results in
-
-    <\equation*>
-      -<frac|1|2> <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
-      \ ln<around*|(|<frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]>|)>.
-    </equation*>
-
-    Altogether, we get the final expression.
-
-    \;
+    See appendix <reference|appendix: Functional Gaussian Integral>.
   </footnote>
 
-  <small|<math|C\<times\>exp<around*|{|<frac|1|2>
-  \ <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
-  <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x<rprime|'>
-  <frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]><around*|[|<frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|-|)>\<delta\>\<phi\><around*|(|\<ast\>|)>><around*|[|\<varphi\>,0|]>|]><rsup|-1><around*|(|x,x<rprime|'>|)><frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x<rprime|'>|)>><around*|[|\<varphi\>,0|]>-<frac|1|2>
-  <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
-  \ ln<around*|(|<frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]>|)>|}>.>>
+  <\equation*>
+    <small|C exp<around*|{|<frac|1|2> \ <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
+    <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x<rprime|'>
+    <frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]><around*|[|<frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\>\<delta\>\<phi\>><around*|[|\<varphi\>,0|]>|]><rsup|-1><around*|(|x,x<rprime|'>|)><frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x<rprime|'>|)>><around*|[|\<varphi\>,0|]>-<frac|1|2>
+    <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
+    \ ln<around*|(|<frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]>|)>|}>>
+  </equation*>
 
   The other terms can be seen as a perturbative expansion based on this
   Gaussian term, and thus all are proportional to higher order of
-  <math|<around*|\||\<mathd\>V<around*|(|t|)>|\|>>, thus omittable. So, let
+  <math|<around*|\||\<mathd\>V<around*|(|t|)>|\|>>, thus omittable. So,
+  letting
 
   <\equation*>
     \<mathd\>S<rsub|V<around*|(|t|)>><around*|[|\<varphi\>|]>\<assign\>S<rsub|V<around*|(|t+\<mathd\>t|)>><around*|[|\<varphi\>|]>-S<rsub|V<around*|(|t|)>><around*|[|\<varphi\>,0|]>,
@@ -456,6 +349,151 @@
     analogy to the weight between the neurons at <math|x> and <math|y>.
   </footnote> Indeed, a function can be recovered in a larger range if we
   have higher derivatives on the origin.
+
+  <appendix|Functional Gaussian Integral><label|appendix: Functional Gaussian
+  Integral>
+
+  To integrate the functional Gaussian integral as the form
+
+  <\equation*>
+    <big|prod><rsub|x\<in\>V><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<phi\><around*|(|x|)>|]>
+    exp<around*|(|-<frac|1|2><big|int><rsub|V>\<mathd\>x
+    <big|int><rsub|V>\<mathd\>x<rprime|'> A<around*|(|x,x<rprime|'>|)>
+    \<phi\><around*|(|x|)>\<phi\><around*|(|x<rprime|'>|)>-<big|int><rsub|V>\<mathd\>x
+    b<around*|(|x|)> \<phi\><around*|(|x|)>|)>,
+  </equation*>
+
+  we need several tools. The first is <math|\<phi\>> sits in a
+  sub-Hilbert-space on which <math|<around*|{|\|
+  x\<rangle\>\|x\<in\>\<mathd\>V<around*|(|t|)>|}>> is complete, meaning that
+  <math|<big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x\|
+  x\<rangle\>\<langle\> x\|=1> on this sub-Hilbert-space. This helps convert
+  from continuous spectrum to discrete spectrum. The second is
+  multi-dimensional Gaussian integral
+
+  <\equation*>
+    <big|prod><rsub|\<alpha\>=1><rsup|n><big|int><rsub|\<bbb-R\>>\<mathd\>x<rsup|\<alpha\>>
+    exp<around*|(|-<frac|1|2>A<rsub|\<alpha\>\<alpha\><rprime|'>>
+    x<rsup|\<alpha\>> x<rsup|\<alpha\><rprime|'>>+b<rsub|\<alpha\>>
+    x<rsup|\<alpha\>>|)>=<sqrt|<frac|<around*|(|2\<mathpi\>|)><rsup|n>|det<around*|(|A|)>>>exp<around*|(|<frac|1|2><around*|(|A<rsup|-1>|)><rsup|\<alpha\>\<alpha\><rprime|'>>
+    b<rsub|\<alpha\>> b<rsub|\<alpha\><rprime|'>>|)>,
+  </equation*>
+
+  where <math|A> and <math|b> can be complex. The third is
+
+  <\equation*>
+    det<around*|(|A|)>=tr ln<around*|(|A|)>.
+  </equation*>
+
+  And finally, given an operator <math|A> and any complete orthogonal base
+  <math|\| x\<rangle\>> with continuous spectrum, <\footnote>
+    To get this result, we start at the conclusion
+
+    <\equation*>
+      ln A=<big|int>\<mathd\>x \<mathd\>x<rprime|'> ln\<langle\>
+      x\|A\|x<rprime|'> \<rangle\>\| x\<rangle\>\<langle\>x<rprime|'> \|.
+    </equation*>
+
+    Recall that, <math|tr ln A> is well-defined in discrete spectrum. For
+    instance, given a complete orthogonal base <math|\| \<alpha\>\<rangle\>>
+    with discrete spectrum, <math|tr ln A\<assign\><big|sum><rsub|\<alpha\>>\<langle\>
+    \<alpha\>\|ln A\|\<alpha\> \<rangle\>>. Then we have
+
+    <\align>
+      <tformat|<table|<row|<cell|tr ln A\<assign\>>|<cell|<big|sum><rsub|\<alpha\>>\<langle\>
+      \<alpha\>\|ln A\|\<alpha\> \<rangle\>>>|<row|<cell|<around*|{|ln
+      A=\<cdots\>|}>=>|<cell|<big|int>\<mathd\>x \<mathd\>x<rprime|'>
+      <big|sum><rsub|\<alpha\>>\<langle\> x<rprime|'>\|
+      \<alpha\>\<rangle\>\<langle\> \<alpha\>\|x \<rangle\> ln\<langle\>
+      x\|A\|x<rprime|'> \<rangle\>>>|<row|<cell|<around*|{|<big|sum><rsub|\<alpha\>>\|
+      \<alpha\>\<rangle\>\<langle\> \<alpha\>\|=1|}>=>|<cell|<big|int>\<mathd\>x
+      ln \<langle\> x\|A\|x \<rangle\>,>>>>
+    </align>
+
+    which is the <math|tr ln A> expressed in continuous spectrum.
+  </footnote>
+
+  <\equation*>
+    tr ln A=<big|int>\<mathd\>x ln \<langle\> x\|A\|x \<rangle\>.
+  </equation*>
+
+  Now, we start to integrate this functional Gaussian integral, by first
+  converting the discrete spectrum <math|<around*|{|\|
+  \<alpha\>\<rangle\>\|\<alpha\>\<in\>I|}>> from <math|\| x\<rangle\>>, which
+  results in <math|\<phi\><around*|(|x|)>\<assign\>\<langle\> x\|\<phi\>
+  \<rangle\>=<big|sum><rsub|\<alpha\>>\<langle\> x\|\<alpha\>
+  \<rangle\>\<langle\> \<alpha\>\| \<phi\>\<rangle\>\<backassign\><big|sum><rsub|\<alpha\>>\<langle\>
+  x\|\<alpha\> \<rangle\> \<phi\><rsup|\<alpha\>>> where we suppose that
+  <math|\<phi\><rsup|\<alpha\>>> is real for each <math|\<alpha\>>,
+
+  <\align>
+    <tformat|<table|<row|<cell|>|<cell|- <big|int><rsub|V>\<mathd\>x
+    b<around*|(|x|)>\<phi\><around*|(|x|)>>>|<row|<cell|<around*|{|<text|<math|\<phi\>>
+    is real>|}>=>|<cell|- <big|int><rsub|V>\<mathd\>x
+    b<around*|(|x|)>\<phi\><rsup|\<ast\>><around*|(|x|)>>>|<row|<cell|<around*|{|<big|int><rsub|V>\<mathd\>x
+    \|x\<rangle\>\<langle\> x\|=1|}>=>|<cell|-\<langle\> \<phi\>\|
+    b\<rangle\>>>|<row|<cell|<around*|{|<big|sum><rsub|\<alpha\>>\|\<alpha\>
+    \<rangle\>\<langle\>\<alpha\> \|=1|}>=>|<cell|-b<rsub|\<alpha\>>
+    \<phi\><rsup|\<ast\>><rsup|\<alpha\>>>>|<row|<cell|<around*|{|<text|<math|\<phi\><rsup|\<alpha\>>>
+    is real>|}>=>|<cell|-b<rsub|\<alpha\>> \<phi\><rsup|\<alpha\>>,>>>>
+  </align>
+
+  and
+
+  <\align>
+    <tformat|<table|<row|<cell|>|<cell|-<frac|1|2><big|int><rsub|V>\<mathd\>x
+    <big|int><rsub|V>\<mathd\>x<rprime|'>
+    A<around*|(|x,x|)>\<phi\><around*|(|x|)>\<phi\><around*|(|x<rprime|'>|)>>>|<row|<cell|<around*|{|<big|int><rsub|V>\<mathd\>x
+    \|x\<rangle\>\<langle\> x\|=1|}>=>|<cell|-<frac|1|2>\<langle\>\<phi\>
+    \|A\| \<phi\>\<rangle\>>>|<row|<cell|<around*|{|<big|sum><rsub|\<alpha\>>\|\<alpha\>
+    \<rangle\>\<langle\>\<alpha\> \|=1|}>=>|<cell|-<frac|1|2>A<rsub|\<alpha\>\<alpha\><rprime|'>>
+    \<phi\><rsup|\<ast\>><rsup|\<alpha\>>\<phi\><rsup|\<alpha\><rprime|'>>>>|<row|<cell|<around*|{|<text|<math|\<phi\><rsup|\<alpha\>>>
+    is real>|}>>|<cell|-<frac|1|2>A<rsub|\<alpha\>\<alpha\><rprime|'>>
+    \<phi\><rsup|\<alpha\>>\<phi\><rsup|\<alpha\><rprime|'>>.>>>>
+  </align>
+
+  With these, the integral turns to be
+
+  <\equation*>
+    C <big|prod><rsub|\<alpha\>=1><rsup|n><big|int><rsub|\<bbb-R\>>\<mathd\>\<phi\><rsup|\<alpha\>>
+    exp<around*|(|-<frac|1|2>A<rsub|\<alpha\>\<alpha\><rprime|'>>
+    \<phi\><rsup|\<alpha\>>\<phi\><rsup|\<alpha\><rprime|'>>-b<rsub|\<alpha\>>\<phi\><rsup|\<alpha\>>|)>,
+  </equation*>
+
+  where <math|C\<assign\>det<around*|(|U|)>> and unitary matrix
+  <math|U<rsub|x,\<alpha\>>\<assign\>\<langle\> x\|\<alpha\> \<rangle\>>. It
+  gives
+
+  <\equation*>
+    C<rprime|'> exp<around*|(|<frac|1|2> \ b<rsub|\<alpha\>><around*|(|A<rsup|-1>|)><rsup|\<alpha\>\<alpha\><rprime|'>>b<rsub|\<alpha\><rprime|'>>-<frac|1|2>
+    tr ln A|)>,
+  </equation*>
+
+  where <math|C<rprime|'>\<assign\><sqrt|<around*|(|2\<mathpi\>|)><rsup|n>>
+  C>. The final step is converting from <math|\| \<alpha\>\<rangle\>> back to
+  <math|\| x\<rangle\>>. The first term naturally goes to
+
+  <\equation*>
+    <frac|1|2> \ <big|int><rsub|V>\<mathd\>x
+    <big|int><rsub|V>\<mathd\>x<rprime|'>
+    b<around*|(|x|)><around*|(|A<rsup|-1>|)><around*|(|x,x<rprime|'>|)>b<around*|(|x<rprime|'>|)>.
+  </equation*>
+
+  And with the aid of formula <math|tr ln A=<big|int><rsub|V>\<mathd\>x ln
+  \<langle\> x\|A\|x \<rangle\>>, the second term gives
+
+  <\equation*>
+    -<frac|1|2> <big|int><rsub|V>\<mathd\>x \ ln A<around*|(|x,x|)>.
+  </equation*>
+
+  Altogether, we get the final expression
+
+  <\equation*>
+    C<rprime|'> exp<around*|{|<frac|1|2> \ <big|int><rsub|V>\<mathd\>x
+    <big|int><rsub|V>\<mathd\>x<rprime|'>
+    b<around*|(|x|)><around*|(|A<rsup|-1>|)><around*|(|x,x<rprime|'>|)>b<around*|(|x<rprime|'>|)>-<frac|1|2>
+    <big|int><rsub|V>\<mathd\>x \ ln A<around*|(|x,x|)>|}>.
+  </equation*>
 </body>
 
 <\initial>
@@ -466,72 +504,95 @@
 
 <\references>
   <\collection>
+    <associate|appendix: Functional Gaussian Integral|<tuple|A|5>>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|3.1|?>>
-    <associate|auto-11|<tuple|3.2|?>>
-    <associate|auto-12|<tuple|4|?>>
-    <associate|auto-13|<tuple|4.1|?>>
-    <associate|auto-2|<tuple|1.1|2>>
-    <associate|auto-3|<tuple|2|2>>
-    <associate|auto-4|<tuple|2.1|2>>
-    <associate|auto-5|<tuple|2.2|2>>
-    <associate|auto-6|<tuple|2.3|3>>
-    <associate|auto-7|<tuple|2.4|3>>
+    <associate|auto-10|<tuple|3.1|3>>
+    <associate|auto-11|<tuple|3.2|4>>
+    <associate|auto-12|<tuple|4|4>>
+    <associate|auto-13|<tuple|4.1|4>>
+    <associate|auto-14|<tuple|A|5>>
+    <associate|auto-2|<tuple|1.1|1>>
+    <associate|auto-3|<tuple|2|1>>
+    <associate|auto-4|<tuple|2.1|1>>
+    <associate|auto-5|<tuple|2.2|1>>
+    <associate|auto-6|<tuple|2.3|2>>
+    <associate|auto-7|<tuple|2.4|2>>
     <associate|auto-8|<tuple|2.5|3>>
     <associate|auto-9|<tuple|3|3>>
     <associate|definition:Renormalization Group|<tuple|1|?>>
     <associate|equation:RG|<tuple|2|?>>
     <associate|footnote-1|<tuple|1|1>>
-    <associate|footnote-2|<tuple|2|2>>
-    <associate|footnote-3|<tuple|3|?>>
-    <associate|footnote-4|<tuple|4|?>>
+    <associate|footnote-2|<tuple|2|1>>
+    <associate|footnote-3|<tuple|3|4>>
+    <associate|footnote-4|<tuple|4|4>>
+    <associate|footnote-5|<tuple|5|5>>
     <associate|footnr-1|<tuple|1|1>>
-    <associate|footnr-2|<tuple|2|2>>
-    <associate|footnr-3|<tuple|3|?>>
-    <associate|footnr-4|<tuple|4|?>>
+    <associate|footnr-2|<tuple|2|1>>
+    <associate|footnr-3|<tuple|3|4>>
+    <associate|footnr-4|<tuple|4|4>>
+    <associate|footnr-5|<tuple|5|5>>
   </collection>
 </references>
 
 <\auxiliary>
   <\collection>
     <\associate|toc>
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Boltzmann
-      Machine Connects Self-Similarity and Renormalzation Group>
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Basic
+      Idea> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-1><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|2<space|2spc>>
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-2><vspace|0.5fn>
+      <with|par-left|<quote|1tab>|1.1<space|2spc>From Self-Similarity to
+      Pattern Recognition <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-2>>
 
-      <with|par-left|<quote|1tab>|2.1<space|2spc>Vanilla Boltzmann Machine
-      with Locality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-3>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|2<space|2spc>Renormalization
+      Group> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-3><vspace|0.5fn>
 
-      <with|par-left|<quote|1tab>|2.2<space|2spc>Continuous Symmetries
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|2.1<space|2spc>Configuration Space and
+      Operations <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|3<space|2spc>Convolutional
-      Neural Network: Continuous Version>
+      <with|par-left|<quote|1tab>|2.2<space|2spc>Boltzmann Machine
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-5><vspace|0.5fn>
+      <no-break><pageref|auto-5>>
 
-      <with|par-left|<quote|1tab>|3.1<space|2spc>Convolutional Layer
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|2.3<space|2spc>Continuous Symmetries and
+      Gauge Fixing <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1tab>|3.2<space|2spc>Pooling Layer
+      <with|par-left|<quote|1tab>|2.4<space|2spc>Renormalization Group
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
-      <with|par-left|<quote|1tab>|3.3<space|2spc>Dense Layer
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|2.5<space|2spc>Self-Similarity in
+      Renormalization Group <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
 
-      <with|par-left|<quote|1tab>|3.4<space|2spc>Convolutional Neural Network
-      Is Non-Local <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-9>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|3<space|2spc>Renormalization
+      Group Equation> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-9><vspace|0.5fn>
+
+      <with|par-left|<quote|1tab>|3.1<space|2spc>Renormalization Group
+      Equation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-10>>
+
+      <with|par-left|<quote|1tab>|3.2<space|2spc>Self-Similarity May Relate
+      to Limit Circle <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-11>>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|4<space|2spc>Construction
+      of Action Functional> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-12><vspace|0.5fn>
+
+      <with|par-left|<quote|1tab>|4.1<space|2spc>Vanilla Boltzmann Machine
+      with Locality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-13>>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Appendix
+      A<space|2spc>Functional Gaussian Integral>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-14><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
