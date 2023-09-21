@@ -590,7 +590,7 @@
     <associate|footnr-4|<tuple|4|4>>
     <associate|footnr-5|<tuple|5|5>>
     <associate|footnr-6|<tuple|6|?>>
-    <associate|theorem: Functional Gaussian Integral|<tuple|1|?>>
+    <associate|theorem: Functional Gaussian Integral|<tuple|1|5>>
   </collection>
 </references>
 
