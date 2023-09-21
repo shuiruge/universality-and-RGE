@@ -258,11 +258,16 @@
     exp<around*|(|- <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
     <frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]>\<phi\><around*|(|x|)>-<frac|1|2><big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
     <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x<rprime|'>
-    <frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>\<delta\>\<phi\><around*|(|x<rprime|'>|)>><around*|[|\<varphi\>,0|]>\<phi\><around*|(|x|)>\<phi\><around*|(|x<rprime|'>|)>|)>,>
+    <frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>\<delta\>\<phi\><around*|(|x<rprime|'>|)>><around*|[|\<varphi\>,0|]>\<phi\><around*|(|x|)>\<phi\><around*|(|x<rprime|'>|)>|)>.>
   </equation*>
 
-  which results in <\footnote>
-    See appendix <reference|appendix: Functional Gaussian Integral>.
+  Since <math|<around*|(|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>/\<delta\>\<phi\><around*|(|x|)>\<delta\>\<phi\><around*|(|x<rprime|'>|)>|)><around*|[|\<varphi\>,0|]>>
+  is real and symmetric on <math|x> and <math|x<rprime|'>>, and
+  <math|<around*|{|\| x\<rangle\>\|x\<in\>\<mathd\>V<around*|(|t|)>|}>> is
+  complete on the sub-Hilbert-space where the <math|\<phi\>> sits, this
+  integral can be integrated out, as <\footnote>
+    For functional Gaussian integral, see appendix <reference|appendix:
+    Functional Gaussian Integral>.
   </footnote>
 
   <\equation*>
@@ -353,40 +358,91 @@
   <appendix|Functional Gaussian Integral><label|appendix: Functional Gaussian
   Integral>
 
-  To integrate the functional Gaussian integral as the form
+  <\theorem>
+    [Functional Gaussian Integral]<label|theorem: Functional Gaussian
+    Integral> Let <math|A<around*|(|x,x<rprime|'>|)>> and
+    <math|b<around*|(|x|)>> real functions with
+    <math|A<around*|(|x,x<rprime|'>|)>=A<around*|(|x<rprime|'>,x|)>> for each
+    <math|x> and <math|x<rprime|'>>. Suppose that the orthogonal base
+    <math|\| x\<rangle\>> is complete, that is
+    <math|<big|int><rsub|V>\<mathd\>x\| x\<rangle\>\<langle\>x \|=1> for some
+    set <math|V>. Then we have the functional integral
 
-  <\equation*>
-    <big|prod><rsub|x\<in\>V><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<phi\><around*|(|x|)>|]>
-    exp<around*|(|-<frac|1|2><big|int><rsub|V>\<mathd\>x
-    <big|int><rsub|V>\<mathd\>x<rprime|'> A<around*|(|x,x<rprime|'>|)>
-    \<phi\><around*|(|x|)>\<phi\><around*|(|x<rprime|'>|)>-<big|int><rsub|V>\<mathd\>x
-    b<around*|(|x|)> \<phi\><around*|(|x|)>|)>,
-  </equation*>
+    <\align>
+      <tformat|<table|<row|<cell|>|<cell|<big|prod><rsub|x\<in\>V><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<phi\><around*|(|x|)>|]>
+      exp<around*|(|-<frac|1|2><big|int><rsub|V>\<mathd\>x
+      <big|int><rsub|V>\<mathd\>x<rprime|'> A<around*|(|x,x<rprime|'>|)>
+      \<phi\><around*|(|x|)>\<phi\><around*|(|x<rprime|'>|)>-<big|int><rsub|V>\<mathd\>x
+      b<around*|(|x|)> \<phi\><around*|(|x|)>|)>>>|<row|<cell|=>|<cell|C
+      exp<around*|{|<frac|1|2> \ <big|int><rsub|V>\<mathd\>x
+      <big|int><rsub|V>\<mathd\>x<rprime|'>
+      b<around*|(|x|)><around*|(|A<rsup|-1>|)><around*|(|x,x<rprime|'>|)>b<around*|(|x<rprime|'>|)>-<frac|1|2>
+      <big|int><rsub|V>\<mathd\>x \ ln A<around*|(|x,x|)>|}>,>>>>
+    </align>
 
-  we need several tools. The first is <math|\<phi\>> sits in a
-  sub-Hilbert-space on which <math|<around*|{|\|
-  x\<rangle\>\|x\<in\>\<mathd\>V<around*|(|t|)>|}>> is complete, meaning that
-  <math|<big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x\|
-  x\<rangle\>\<langle\> x\|=1> on this sub-Hilbert-space. This helps convert
-  from continuous spectrum to discrete spectrum. The second is
-  multi-dimensional Gaussian integral
+    where <math|C> is independent of <math|\<phi\>>, and
+    <math|<big|int><rsub|V>\<mathd\>x<rprime|'> A<around*|(|x,x<rprime|'>|)>
+    <around*|(|A<rsup|-1>|)><around*|(|x<rprime|'>,x<rprime|''>|)>=\<delta\><around*|(|x-x<rprime|''>|)>>.
+  </theorem>
 
-  <\equation*>
-    <big|prod><rsub|\<alpha\>=1><rsup|n><big|int><rsub|\<bbb-R\>>\<mathd\>x<rsup|\<alpha\>>
-    exp<around*|(|-<frac|1|2>A<rsub|\<alpha\>\<alpha\><rprime|'>>
-    x<rsup|\<alpha\>> x<rsup|\<alpha\><rprime|'>>+b<rsub|\<alpha\>>
-    x<rsup|\<alpha\>>|)>=<sqrt|<frac|<around*|(|2\<mathpi\>|)><rsup|n>|det<around*|(|A|)>>>exp<around*|(|<frac|1|2><around*|(|A<rsup|-1>|)><rsup|\<alpha\>\<alpha\><rprime|'>>
-    b<rsub|\<alpha\>> b<rsub|\<alpha\><rprime|'>>|)>,
-  </equation*>
+  The proof of this theorem needs several tools.
 
-  where <math|A> and <math|b> can be complex. The third is
+  <\lemma>
+    [Multi-Dimensional Gaussian Integral] We have
 
-  <\equation*>
-    det<around*|(|A|)>=tr ln<around*|(|A|)>.
-  </equation*>
+    <\equation*>
+      <big|prod><rsub|\<alpha\>=1><rsup|n><big|int><rsub|\<bbb-R\>>\<mathd\>x<rsup|\<alpha\>>
+      exp<around*|(|-<frac|1|2>A<rsub|\<alpha\>\<alpha\><rprime|'>>
+      x<rsup|\<alpha\>> x<rsup|\<alpha\><rprime|'>>+b<rsub|\<alpha\>>
+      x<rsup|\<alpha\>>|)>=<sqrt|<frac|<around*|(|2\<mathpi\>|)><rsup|n>|det<around*|(|A|)>>>exp<around*|(|<frac|1|2><around*|(|A<rsup|-1>|)><rsup|\<alpha\>\<alpha\><rprime|'>>
+      b<rsub|\<alpha\>> b<rsub|\<alpha\><rprime|'>>|)>,
+    </equation*>
 
-  And finally, given an operator <math|A> and any complete orthogonal base
-  <math|\| x\<rangle\>> with continuous spectrum, <\footnote>
+    where <math|A> is real symmetric matrix and <math|b> is real vector.
+  </lemma>
+
+  <\proof>
+    Left to reader.
+  </proof>
+
+  <\lemma>
+    For a real matrix <math|A>, we have
+
+    <\equation*>
+      det<around*|(|A|)>=tr ln<around*|(|A|)>.
+    </equation*>
+  </lemma>
+
+  <\proof>
+    Left to reader
+  </proof>
+
+  <\lemma>
+    Given an operator <math|A> and a complete orthogonal base
+    <math|<around*|{|\| x\<rangle\>\|x\<in\>V|}>> with continuous spectrum,
+    we have
+
+    <\equation*>
+      ln A=<big|int>\<mathd\>x \<mathd\>x<rprime|'> ln\<langle\>
+      x\|A\|x<rprime|'> \<rangle\>\| x\<rangle\>\<langle\>x<rprime|'> \|.
+    </equation*>
+  </lemma>
+
+  <\proof>
+    Left to reader.
+  </proof>
+
+  <\lemma>
+    Given an operator <math|A> and a complete orthogonal base
+    <math|<around*|{|\| x\<rangle\>\|x\<in\>V|}>> with continuous spectrum,
+    we have
+
+    <\equation*>
+      tr ln A=<big|int><rsub|V>\<mathd\>x ln \<langle\> x\|A\|x \<rangle\>.
+    </equation*>
+  </lemma>
+
+  <\proof>
     To get this result, we start at the conclusion
 
     <\equation*>
@@ -411,89 +467,90 @@
     </align>
 
     which is the <math|tr ln A> expressed in continuous spectrum.
-  </footnote>
+  </proof>
 
-  <\equation*>
-    tr ln A=<big|int>\<mathd\>x ln \<langle\> x\|A\|x \<rangle\>.
-  </equation*>
+  Now, we come to prove the main theorem <reference|theorem: Functional
+  Gaussian Integral>.
 
-  Now, we start to integrate this functional Gaussian integral, by first
-  converting the discrete spectrum <math|<around*|{|\|
-  \<alpha\>\<rangle\>\|\<alpha\>\<in\>I|}>> from <math|\| x\<rangle\>>, which
-  results in <math|\<phi\><around*|(|x|)>\<assign\>\<langle\> x\|\<phi\>
-  \<rangle\>=<big|sum><rsub|\<alpha\>>\<langle\> x\|\<alpha\>
-  \<rangle\>\<langle\> \<alpha\>\| \<phi\>\<rangle\>\<backassign\><big|sum><rsub|\<alpha\>>\<langle\>
-  x\|\<alpha\> \<rangle\> \<phi\><rsup|\<alpha\>>> where we suppose that
-  <math|\<phi\><rsup|\<alpha\>>> is real for each <math|\<alpha\>>,
+  <\proof>
+    The completeness of <math|\|x \<rangle\>> helps convert to a discrete
+    spectrum <math|<around*|{|\| \<alpha\>\<rangle\>\|\<alpha\>\<in\>I|}>>,
+    which results in <math|\<phi\><around*|(|x|)>\<assign\>\<langle\>
+    x\|\<phi\> \<rangle\>=<big|sum><rsub|\<alpha\>>\<langle\> x\|\<alpha\>
+    \<rangle\>\<langle\> \<alpha\>\| \<phi\>\<rangle\>\<backassign\><big|sum><rsub|\<alpha\>>\<langle\>
+    x\|\<alpha\> \<rangle\> \<phi\><rsup|\<alpha\>>> where we suppose that
+    <math|\<phi\><rsup|\<alpha\>>> is real for each <math|\<alpha\>>,
 
-  <\align>
-    <tformat|<table|<row|<cell|>|<cell|- <big|int><rsub|V>\<mathd\>x
-    b<around*|(|x|)>\<phi\><around*|(|x|)>>>|<row|<cell|<around*|{|<text|<math|\<phi\>>
-    is real>|}>=>|<cell|- <big|int><rsub|V>\<mathd\>x
-    b<around*|(|x|)>\<phi\><rsup|\<ast\>><around*|(|x|)>>>|<row|<cell|<around*|{|<big|int><rsub|V>\<mathd\>x
-    \|x\<rangle\>\<langle\> x\|=1|}>=>|<cell|-\<langle\> \<phi\>\|
-    b\<rangle\>>>|<row|<cell|<around*|{|<big|sum><rsub|\<alpha\>>\|\<alpha\>
-    \<rangle\>\<langle\>\<alpha\> \|=1|}>=>|<cell|-b<rsub|\<alpha\>>
-    \<phi\><rsup|\<ast\>><rsup|\<alpha\>>>>|<row|<cell|<around*|{|<text|<math|\<phi\><rsup|\<alpha\>>>
-    is real>|}>=>|<cell|-b<rsub|\<alpha\>> \<phi\><rsup|\<alpha\>>,>>>>
-  </align>
+    <\align>
+      <tformat|<table|<row|<cell|>|<cell|- <big|int><rsub|V>\<mathd\>x
+      b<around*|(|x|)>\<phi\><around*|(|x|)>>>|<row|<cell|<around*|{|<text|<math|\<phi\>>
+      is real>|}>=>|<cell|- <big|int><rsub|V>\<mathd\>x
+      b<around*|(|x|)>\<phi\><rsup|\<ast\>><around*|(|x|)>>>|<row|<cell|<around*|{|<big|int><rsub|V>\<mathd\>x
+      \|x\<rangle\>\<langle\> x\|=1|}>=>|<cell|-\<langle\> \<phi\>\|
+      b\<rangle\>>>|<row|<cell|<around*|{|<big|sum><rsub|\<alpha\>>\|\<alpha\>
+      \<rangle\>\<langle\>\<alpha\> \|=1|}>=>|<cell|-b<rsub|\<alpha\>>
+      \<phi\><rsup|\<ast\>><rsup|\<alpha\>>>>|<row|<cell|<around*|{|<text|<math|\<phi\><rsup|\<alpha\>>>
+      is real>|}>=>|<cell|-b<rsub|\<alpha\>> \<phi\><rsup|\<alpha\>>,>>>>
+    </align>
 
-  and
+    and
 
-  <\align>
-    <tformat|<table|<row|<cell|>|<cell|-<frac|1|2><big|int><rsub|V>\<mathd\>x
-    <big|int><rsub|V>\<mathd\>x<rprime|'>
-    A<around*|(|x,x|)>\<phi\><around*|(|x|)>\<phi\><around*|(|x<rprime|'>|)>>>|<row|<cell|<around*|{|<big|int><rsub|V>\<mathd\>x
-    \|x\<rangle\>\<langle\> x\|=1|}>=>|<cell|-<frac|1|2>\<langle\>\<phi\>
-    \|A\| \<phi\>\<rangle\>>>|<row|<cell|<around*|{|<big|sum><rsub|\<alpha\>>\|\<alpha\>
-    \<rangle\>\<langle\>\<alpha\> \|=1|}>=>|<cell|-<frac|1|2>A<rsub|\<alpha\>\<alpha\><rprime|'>>
-    \<phi\><rsup|\<ast\>><rsup|\<alpha\>>\<phi\><rsup|\<alpha\><rprime|'>>>>|<row|<cell|<around*|{|<text|<math|\<phi\><rsup|\<alpha\>>>
-    is real>|}>>|<cell|-<frac|1|2>A<rsub|\<alpha\>\<alpha\><rprime|'>>
-    \<phi\><rsup|\<alpha\>>\<phi\><rsup|\<alpha\><rprime|'>>.>>>>
-  </align>
+    <\align>
+      <tformat|<table|<row|<cell|>|<cell|-<frac|1|2><big|int><rsub|V>\<mathd\>x
+      <big|int><rsub|V>\<mathd\>x<rprime|'>
+      A<around*|(|x,x|)>\<phi\><around*|(|x|)>\<phi\><around*|(|x<rprime|'>|)>>>|<row|<cell|<around*|{|<big|int><rsub|V>\<mathd\>x
+      \|x\<rangle\>\<langle\> x\|=1|}>=>|<cell|-<frac|1|2>\<langle\>\<phi\>
+      \|A\| \<phi\>\<rangle\>>>|<row|<cell|<around*|{|<big|sum><rsub|\<alpha\>>\|\<alpha\>
+      \<rangle\>\<langle\>\<alpha\> \|=1|}>=>|<cell|-<frac|1|2>A<rsub|\<alpha\>\<alpha\><rprime|'>>
+      \<phi\><rsup|\<ast\>><rsup|\<alpha\>>\<phi\><rsup|\<alpha\><rprime|'>>>>|<row|<cell|<around*|{|<text|<math|\<phi\><rsup|\<alpha\>>>
+      is real>|}>>|<cell|-<frac|1|2>A<rsub|\<alpha\>\<alpha\><rprime|'>>
+      \<phi\><rsup|\<alpha\>>\<phi\><rsup|\<alpha\><rprime|'>>.>>>>
+    </align>
 
-  With these, the integral turns to be
+    With these, the integral turns to be
 
-  <\equation*>
-    C <big|prod><rsub|\<alpha\>=1><rsup|n><big|int><rsub|\<bbb-R\>>\<mathd\>\<phi\><rsup|\<alpha\>>
-    exp<around*|(|-<frac|1|2>A<rsub|\<alpha\>\<alpha\><rprime|'>>
-    \<phi\><rsup|\<alpha\>>\<phi\><rsup|\<alpha\><rprime|'>>-b<rsub|\<alpha\>>\<phi\><rsup|\<alpha\>>|)>,
-  </equation*>
+    <\equation*>
+      C <big|prod><rsub|\<alpha\>=1><rsup|n><big|int><rsub|\<bbb-R\>>\<mathd\>\<phi\><rsup|\<alpha\>>
+      exp<around*|(|-<frac|1|2>A<rsub|\<alpha\>\<alpha\><rprime|'>>
+      \<phi\><rsup|\<alpha\>>\<phi\><rsup|\<alpha\><rprime|'>>-b<rsub|\<alpha\>>\<phi\><rsup|\<alpha\>>|)>,
+    </equation*>
 
-  where <math|C\<assign\>det<around*|(|U|)>> and unitary matrix
-  <math|U<rsub|x,\<alpha\>>\<assign\>\<langle\> x\|\<alpha\> \<rangle\>>. It
-  gives
+    where <math|C\<assign\>det<around*|(|U|)>> and unitary matrix
+    <math|U<rsub|x,\<alpha\>>\<assign\>\<langle\> x\|\<alpha\> \<rangle\>>.
+    It gives
 
-  <\equation*>
-    C<rprime|'> exp<around*|(|<frac|1|2> \ b<rsub|\<alpha\>><around*|(|A<rsup|-1>|)><rsup|\<alpha\>\<alpha\><rprime|'>>b<rsub|\<alpha\><rprime|'>>-<frac|1|2>
-    tr ln A|)>,
-  </equation*>
+    <\equation*>
+      C<rprime|'> exp<around*|(|<frac|1|2>
+      \ b<rsub|\<alpha\>><around*|(|A<rsup|-1>|)><rsup|\<alpha\>\<alpha\><rprime|'>>b<rsub|\<alpha\><rprime|'>>-<frac|1|2>
+      tr ln A|)>,
+    </equation*>
 
-  where <math|C<rprime|'>\<assign\><sqrt|<around*|(|2\<mathpi\>|)><rsup|n>>
-  C>. The final step is converting from <math|\| \<alpha\>\<rangle\>> back to
-  <math|\| x\<rangle\>>. The first term naturally goes to
+    where <math|C<rprime|'>\<assign\><sqrt|<around*|(|2\<mathpi\>|)><rsup|n>>
+    C>. The final step is converting from <math|\| \<alpha\>\<rangle\>> back
+    to <math|\| x\<rangle\>>. The first term naturally goes to
 
-  <\equation*>
-    <frac|1|2> \ <big|int><rsub|V>\<mathd\>x
-    <big|int><rsub|V>\<mathd\>x<rprime|'>
-    b<around*|(|x|)><around*|(|A<rsup|-1>|)><around*|(|x,x<rprime|'>|)>b<around*|(|x<rprime|'>|)>.
-  </equation*>
+    <\equation*>
+      <frac|1|2> \ <big|int><rsub|V>\<mathd\>x
+      <big|int><rsub|V>\<mathd\>x<rprime|'>
+      b<around*|(|x|)><around*|(|A<rsup|-1>|)><around*|(|x,x<rprime|'>|)>b<around*|(|x<rprime|'>|)>.
+    </equation*>
 
-  And with the aid of formula <math|tr ln A=<big|int><rsub|V>\<mathd\>x ln
-  \<langle\> x\|A\|x \<rangle\>>, the second term gives
+    And with the aid of formula <math|tr ln A=<big|int><rsub|V>\<mathd\>x ln
+    \<langle\> x\|A\|x \<rangle\>>, the second term gives
 
-  <\equation*>
-    -<frac|1|2> <big|int><rsub|V>\<mathd\>x \ ln A<around*|(|x,x|)>.
-  </equation*>
+    <\equation*>
+      -<frac|1|2> <big|int><rsub|V>\<mathd\>x \ ln A<around*|(|x,x|)>.
+    </equation*>
 
-  Altogether, we get the final expression
+    Altogether, we get the final expression
 
-  <\equation*>
-    C<rprime|'> exp<around*|{|<frac|1|2> \ <big|int><rsub|V>\<mathd\>x
-    <big|int><rsub|V>\<mathd\>x<rprime|'>
-    b<around*|(|x|)><around*|(|A<rsup|-1>|)><around*|(|x,x<rprime|'>|)>b<around*|(|x<rprime|'>|)>-<frac|1|2>
-    <big|int><rsub|V>\<mathd\>x \ ln A<around*|(|x,x|)>|}>.
-  </equation*>
+    <\equation*>
+      C<rprime|'> exp<around*|{|<frac|1|2> \ <big|int><rsub|V>\<mathd\>x
+      <big|int><rsub|V>\<mathd\>x<rprime|'>
+      b<around*|(|x|)><around*|(|A<rsup|-1>|)><around*|(|x,x<rprime|'>|)>b<around*|(|x<rprime|'>|)>-<frac|1|2>
+      <big|int><rsub|V>\<mathd\>x \ ln A<around*|(|x,x|)>|}>.
+    </equation*>
+  </proof>
 </body>
 
 <\initial>
@@ -526,11 +583,14 @@
     <associate|footnote-3|<tuple|3|4>>
     <associate|footnote-4|<tuple|4|4>>
     <associate|footnote-5|<tuple|5|5>>
+    <associate|footnote-6|<tuple|6|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|3|4>>
     <associate|footnr-4|<tuple|4|4>>
     <associate|footnr-5|<tuple|5|5>>
+    <associate|footnr-6|<tuple|6|?>>
+    <associate|theorem: Functional Gaussian Integral|<tuple|1|?>>
   </collection>
 </references>
 
