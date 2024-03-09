@@ -69,7 +69,7 @@
   nothing but marginalizing some mode <math|>in the probability density
   functional <math|p<around*|[|\<varphi\>|]>>.
 
-  <subsection|Boltzmann Machine>
+  <subsection|Boltzmann Machine and Action Functional>
 
   Boltzmann machine describes the probability density functional of
   configuration <math|\<varphi\>> by a functional called
@@ -128,7 +128,7 @@
   coordinates. As in the case of translational symmetry, this re-definition
   of coordinates fixes the gauge caused by rotational symmetry.
 
-  <subsection|Renormalization Group>
+  <subsection|From Operation to Renormalization Group>
 
   Next, we perform the operation that marginalizes some modes. Let
   <math|V<rprime|'>\<subset\>V>. Marginalizing the modes in
@@ -193,7 +193,7 @@
 
   <section|Renormalization Group Equation>
 
-  <subsection|Renormalization Group Equation>
+  <subsection|Deriving Renormalization Group Equation>
 
   Consider a continuous family of <math|V>,
   <math|<around*|{|V<around*|(|t|)>\|t\<in\><around*|[|0,1|]>|}>>, such that
@@ -275,7 +275,7 @@
     <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x<rprime|'>
     <frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]><around*|[|<frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\>\<delta\>\<phi\>><around*|[|\<varphi\>,0|]>|]><rsup|-1><around*|(|x,x<rprime|'>|)><frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x<rprime|'>|)>><around*|[|\<varphi\>,0|]>-<frac|1|2>
     <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
-    \ ln<around*|(|<frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]>|)>|}>>
+    \ ln<around*|(|<frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]>|)>|}>>.
   </equation*>
 
   The other terms can be seen as a perturbative expansion based on this
@@ -292,15 +292,19 @@
 
   <\align>
     <tformat|<table|<row|<cell|\<mathd\>S<rsub|V<around*|(|t|)>><around*|[|\<varphi\>|]>=>|<cell|<frac|1|2>
+    <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
+    \ ln<around*|(|<frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]>|)>>>|<row|<cell|->|<cell|<frac|1|2>
     \ <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
     <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x<rprime|'>
-    <frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]><around*|(|<frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\>\<delta\>\<phi\>><around*|[|\<varphi\>,0|]>|)><rsup|-1><around*|(|x,x<rprime|'>|)><frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x<rprime|'>|)>><around*|[|\<varphi\>,0|]>>>|<row|<cell|->|<cell|<frac|1|2>
-    <big|int><rsub|\<mathd\>V<around*|(|t|)>>\<mathd\>x
-    \ ln<around*|(|<frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]>|)>,>>>>
+    <frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x|)>><around*|[|\<varphi\>,0|]><around*|(|<frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\>\<delta\>\<phi\>><around*|[|\<varphi\>,0|]>|)><rsup|-1><around*|(|x,x<rprime|'>|)><frac|\<delta\>S<rsub|V<around*|(|t|)>>|\<delta\>\<phi\><around*|(|x<rprime|'>|)>><around*|[|\<varphi\>,0|]>>>>>
   </align>
 
   which is called (non-perturbative) <with|font-series|bold|renormalization
-  group equation>.
+  group equation>. This equation is also called the Wegner-Houghton equation.
+  Wegner and Houghton first gave this formula in 1972 <\footnote>
+    <with|font-shape|italic|Renormalization Group Equation for Critical
+    Phenomena> (DOI: 10.1103/PhysRevA.8.401).
+  </footnote>.
 
   <subsection|Self-Similarity May Relate to Limit Circle>
 
@@ -314,24 +318,26 @@
 
   <subsection|Vanilla Boltzmann Machine with Locality>
 
-  We are to consider the explicit form of the action functional for the
-  pictures of, for instance, turbulence. For vanilla Boltzmann machine, the
-  action functional would be
+  We are to consider the explicit form of the action functional for, for
+  instance, picture. In this case, the <math|x> is <math|2>-dimensional
+  spatial coordinates. For vanilla Boltzmann machine, the action functional
+  would be
 
   <\equation*>
-    S<around*|[|\<varphi\>|]>=<big|int>\<mathd\>x J<around*|(|x|)>
-    \<varphi\><around*|(|x|)>+<big|int>\<mathd\>x \<mathd\>y
-    \<varphi\><around*|(|x|)> W<around*|(|x,y|)> \<varphi\><around*|(|y|)>
+    S<around*|[|\<varphi\>|]>=<big|int><rsub|\<bbb-R\>>\<mathd\>x
+    b<around*|(|x|)> \<varphi\><around*|(|x|)>+<big|int><rsub|\<bbb-R\>>\<mathd\>x
+    \<mathd\>x<rprime|'> \<varphi\><around*|(|x|)>
+    W<around*|(|x,x<rprime|'>|)> \<varphi\><around*|(|x<rprime|'>|)>
   </equation*>
 
-  for some bias <math|J> and kernel <math|W>. In the case of field theory,
-  the kernel would be <math|W<around*|(|x,y|)>=-\<delta\><around*|(|x,y|)>\<times\><around*|[|<around*|(|1/2|)>
-  <around*|(|\<partial\><rsup|2>/\<partial\>y<rsup|2>|)>+V<around*|(|y|)>|]>>
+  for some bias <math|b> and kernel <math|W>. In the case of field theory,
+  the kernel would be <math|W<around*|(|x,x<rprime|'>|)>=-\<delta\><around*|(|x,x<rprime|'>|)>\<times\><around*|[|<around*|(|1/2|)>
+  <around*|(|\<partial\><rsup|2>/\<partial\>x<rsup|2>|)>+V<around*|(|x|)>|]>>
   for some \Pmass function\Q <math|V>. This form of kernel is local which
   means <math|W<around*|(|x,y|)>\<propto\>\<delta\><around*|(|x,y|)>>. Under
   the locality assumption, we have the most general form of kernel:
-  <math|W<around*|(|x,y|)>=\<delta\><around*|(|x,y|)> w<around*|(|y|)>>,
-  where
+  <math|W<around*|(|x,x<rprime|'>|)>=\<delta\><around*|(|x-x<rprime|'>|)>
+  w<around*|(|x|)>>, where
 
   <\equation*>
     w<around*|(|x|)>=a<rsub|0><around*|(|x|)>+a<rsub|1><around*|(|x|)>
@@ -341,8 +347,8 @@
   In this case, action functional is reduced to
 
   <\equation*>
-    S<around*|[|\<varphi\>|]>=<big|int>\<mathd\>x
-    <around*|[|J<around*|(|x|)>\<varphi\><around*|(|x|)>+a<rsub|0><around*|(|x|)>
+    S<around*|[|\<varphi\>|]>=<big|int><rsub|\<bbb-R\>>\<mathd\>x
+    <around*|[|b<around*|(|x|)>\<varphi\><around*|(|x|)>+a<rsub|0><around*|(|x|)>
     \<varphi\><rsup|2><around*|(|x|)>+a<rsub|1><around*|(|x|)>\<varphi\><around*|(|x|)>
     \<partial\><rsup|2>\<varphi\><around*|(|x|)>+\<cdots\>|]>
   </equation*>
@@ -354,6 +360,21 @@
     analogy to the weight between the neurons at <math|x> and <math|y>.
   </footnote> Indeed, a function can be recovered in a larger range if we
   have higher derivatives on the origin.
+
+  <subsection|>
+
+  To show an instance, let us first simplify the
+  <math|S<around*|[|\<varphi\>|]>> by letting the <math|b<around*|(|x|)>=0>
+  and the <math|a<rsub|i><around*|(|x|)>>s constants. Then, by Fourier
+  transformation, we get
+
+  <\equation*>
+    S<around*|[|\<varphi\>|]>=<big|int><rsub|\<bbb-R\>>\<mathd\>p
+    \<varphi\><around*|(|p|)> \<varphi\><around*|(|-p|)>\<times\><around*|(|<big|sum><rsub|n=0><rsup|N><around*|(|-1|)><rsup|n>
+    a<rsub|n> p<rsup|2n>|)>
+  </equation*>
+
+  \;
 
   <appendix|Functional Gaussian Integral><label|appendix: Functional Gaussian
   Integral>
@@ -551,6 +572,61 @@
       <big|int><rsub|V>\<mathd\>x \ ln A<around*|(|x,x|)>|}>.
     </equation*>
   </proof>
+
+  <appendix|Gaussian Integral>
+
+  <\equation>
+    <big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<varphi\>
+    exp<around*|(|-<frac|1|2><big|sum><rsub|\<alpha\>,\<alpha\><rprime|'>>A<rsub|\<alpha\>\<alpha\><rprime|'>>\<varphi\><rsup|\<alpha\>>\<varphi\><rsup|\<alpha\><rprime|'>>+<big|sum><rsub|\<alpha\>>b<rsub|\<alpha\>>\<varphi\><rsup|\<alpha\>>|)>=<sqrt|<frac|<around*|(|2\<mathpi\>|)><rsup|n>|det<around*|(|A|)>>>exp<around*|(|<frac|1|2><big|sum><rsub|\<alpha\>,\<alpha\><rprime|'>><around*|(|A<rsup|-1>|)><rsup|\<alpha\>\<alpha\><rprime|'>>b<rsub|\<alpha\>>b<rsub|\<alpha\><rprime|'>>|)>.
+  </equation>
+
+  <\equation>
+    ln<around*|[|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>\<varphi\>
+    exp<around*|(|-<frac|1|2><big|sum><rsub|\<alpha\>,\<alpha\><rprime|'>>A<rsub|\<alpha\>\<alpha\><rprime|'>>\<varphi\><rsup|\<alpha\>>\<varphi\><rsup|\<alpha\><rprime|'>>+<big|sum><rsub|\<alpha\>>b<rsub|\<alpha\>>\<varphi\><rsup|\<alpha\>>|)>|]>=<frac|1|2><big|sum><rsub|\<alpha\>,\<alpha\><rprime|'>><around*|(|A<rsup|-1>|)><rsup|\<alpha\>\<alpha\><rprime|'>>b<rsub|\<alpha\>>b<rsub|\<alpha\><rprime|'>>-<frac|1|2>tr
+    ln<around*|(|A|)>+<frac|n|2>ln<around*|(|2\<mathpi\>|)>.
+  </equation>
+
+  <\equation>
+    ln<around*|[|<with|color|red|<big|int>\<mathd\>\<mu\><around*|(|\|\<varphi\>
+    \<rangle\>|)>> exp<around*|(|-<frac|1|2>\<langle\>
+    \<varphi\>\|A\|\<varphi\> \<rangle\>+\<langle\> b\|\<varphi\>
+    \<rangle\>|)>|]>=<frac|1|2>\<langle\> b\|A<rsup|-1>\|b
+    \<rangle\>-<frac|1|2>tr ln<around*|(|A|)>+<frac|n|2>ln<around*|(|2\<mathpi\>|)>.
+  </equation>
+
+  With this expression, by inserting <math|<big|sum><rsub|\<alpha\>>\|\<alpha\>
+  \<rangle\>\<langle\> \<alpha\>\|=1>, we recover the conventional Gaussian
+  integrand. The problems left are:
+
+  <\itemize>
+    <item>How is <math|<big|int>\<mathd\>\<mu\><around*|(|\|\<varphi\>
+    \<rangle\>|)>> defined? Especially when the representation is complex.
+
+    <item>How is <math|tr ln<around*|(|A|)>> computed in representation with
+    continuous spectrum.
+  </itemize>
+
+  <math|<big|int>D<around*|[|\<varphi\>|]>=<big|prod><rsub|x><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<varphi\><around*|(|x|)>|]>=<big|prod><rsub|x><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<langle\>x
+  \|\<varphi\> \<rangle\>|]>>. <math|\|x \<rangle\>\<rightarrow\>\|
+  p\<rangle\>>, <math|\<varphi\><around*|(|x|)>=<big|int>\<mathd\>p
+  exp<around*|(|-\<mathi\> p x|)> \<varphi\><around*|(|p|)>>,
+
+  <\align>
+    <tformat|<table|<row|<cell|>|<cell|<big|prod><rsub|x><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<langle\>x
+    \|\<varphi\> \<rangle\>|]>=<big|prod><rsub|x><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<varphi\><around*|(|x|)>|]>>>|<row|<cell|\<rightarrow\>>|<cell|<big|prod><rsub|p><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<langle\>p
+    \|\<varphi\>\<rangle\>|]>=<big|prod><rsub|p><big|int><rsub|\<bbb-R\>>\<mathd\><around*|[|\<varphi\><around*|(|p|)>|]>.>>>>
+  </align>
+
+  <\align>
+    <tformat|<table|<row|<cell|>|<cell|<big|int><rsub|\<bbb-R\>>\<mathd\>x
+    <big|int><rsub|\<bbb-R\>>\<mathd\>y>>|<row|<cell|=>|<cell|<big|int><rsub|\<bbb-R\>>\<mathd\><around*|(|a
+    \<zeta\>+b \<eta\>|)> <big|int><rsub|\<bbb-R\>>\<mathd\><around*|(|c
+    \<zeta\>+d\<eta\>|)>>>|<row|<cell|=>|<cell|?>>>>
+  </align>
+
+  where transformation <math|<matrix|<tformat|<table|<row|<cell|x>>|<row|<cell|y>>>>>=<matrix|<tformat|<table|<row|<cell|a>|<cell|b>>|<row|<cell|c>|<cell|d>>>>>
+  <matrix|<tformat|<table|<row|<cell|\<zeta\>>>|<row|<cell|\<eta\>>>>>>> is
+  unitary, that is, maybe complex.
 </body>
 
 <\initial>
@@ -567,7 +643,9 @@
     <associate|auto-11|<tuple|3.2|4>>
     <associate|auto-12|<tuple|4|4>>
     <associate|auto-13|<tuple|4.1|4>>
-    <associate|auto-14|<tuple|A|5>>
+    <associate|auto-14|<tuple|4.2|5>>
+    <associate|auto-15|<tuple|A|5>>
+    <associate|auto-16|<tuple|B|?>>
     <associate|auto-2|<tuple|1.1|1>>
     <associate|auto-3|<tuple|2|1>>
     <associate|auto-4|<tuple|2.1|1>>
@@ -576,20 +654,16 @@
     <associate|auto-7|<tuple|2.4|2>>
     <associate|auto-8|<tuple|2.5|3>>
     <associate|auto-9|<tuple|3|3>>
-    <associate|definition:Renormalization Group|<tuple|1|?>>
-    <associate|equation:RG|<tuple|2|?>>
     <associate|footnote-1|<tuple|1|1>>
     <associate|footnote-2|<tuple|2|1>>
     <associate|footnote-3|<tuple|3|4>>
     <associate|footnote-4|<tuple|4|4>>
     <associate|footnote-5|<tuple|5|5>>
-    <associate|footnote-6|<tuple|6|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|3|4>>
     <associate|footnr-4|<tuple|4|4>>
     <associate|footnr-5|<tuple|5|5>>
-    <associate|footnr-6|<tuple|6|?>>
     <associate|theorem: Functional Gaussian Integral|<tuple|1|5>>
   </collection>
 </references>
@@ -613,16 +687,16 @@
       Operations <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-4>>
 
-      <with|par-left|<quote|1tab>|2.2<space|2spc>Boltzmann Machine
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|2.2<space|2spc>Boltzmann Machine and Action
+      Functional <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5>>
 
       <with|par-left|<quote|1tab>|2.3<space|2spc>Continuous Symmetries and
       Gauge Fixing <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
-      <with|par-left|<quote|1tab>|2.4<space|2spc>Renormalization Group
-      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|2.4<space|2spc>From Operation to
+      Renormalization Group <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
       <with|par-left|<quote|1tab>|2.5<space|2spc>Self-Similarity in
@@ -633,8 +707,8 @@
       Group Equation> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9><vspace|0.5fn>
 
-      <with|par-left|<quote|1tab>|3.1<space|2spc>Renormalization Group
-      Equation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <with|par-left|<quote|1tab>|3.1<space|2spc>Deriving Renormalization
+      Group Equation <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-10>>
 
       <with|par-left|<quote|1tab>|3.2<space|2spc>Self-Similarity May Relate
@@ -649,10 +723,14 @@
       with Locality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-13>>
 
+      <with|par-left|<quote|1tab>|4.2<space|2spc>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-14>>
+
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Appendix
       A<space|2spc>Functional Gaussian Integral>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-14><vspace|0.5fn>
+      <no-break><pageref|auto-15><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
