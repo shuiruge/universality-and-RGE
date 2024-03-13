@@ -16,8 +16,7 @@
   not exactly the same, but same in pattern, which is recognized by our
   brain.>
 
-  Pattern recognization can also be made by Boltzmann machine (BM)
-  <\footnote>
+  Pattern recognition can also be made by Boltzmann machine (BM) <\footnote>
     An example of deep Boltzmann machine used for pattern abstraction on the
     MNIST dataset can be found <hlink|here|https://github.com/shuiruge/energymodel/blob/main/experiments/Energy_Model_on_MNIST.ipynb>.
   </footnote>, which is a simplified but still efficient model of human
@@ -112,13 +111,13 @@
   <math|\<varphi\><rsub|\<ast\>>> denotes the attractor on the area of which
   <math|\<varphi\>> sits. Let <math|\<psi\><around*|(|x|)>\<assign\>\<varphi\><around*|(|x+z|)>>
   for constant <math|z>, and relaxation <math|\<psi\>\<rightarrow\>\<psi\><rsub|\<ast\>>>.
-  If translational symmetry holds, we shoud expect that
+  If translational symmetry holds, we should expect that
   <math|\<psi\><rsub|\<ast\>><around*|(|x|)>=\<varphi\><rsub|\<ast\>><around*|(|x+z|)>>
   and that <math|S<around*|[|\<varphi\><rsub|\<ast\>>|]>=S<around*|[|\<psi\><rsub|\<ast\>>|]>>.
   This implies a gauge problem: the extremum of <math|S> is not a single
   value, but a sub-manifold along the symmetry.
 
-  The same holds for any other continous symmetry, such as rotational
+  The same holds for any other continuous symmetry, such as rotational
   symmetry.
 
   To deal with this gauge problem, consider a Boltzmann machine that is to
@@ -126,7 +125,7 @@
   one, the learned pattern. This learning task encounters the translational
   symmetry: a rectangle is still the same rectangle after being
   translationally moved. The method to solve this problem is gauge fixing.
-  For instance, the dataset is a colleciton of hand-drawn rectangle images,
+  For instance, the dataset is a collection of hand-drawn rectangle images,
   and <math|\<varphi\>> represents the gray level in range
   <math|<around*|[|0,1|]>>. We are to move all images in dataset to be
   centered at the original. This can be done by shifting
@@ -189,12 +188,12 @@
   group equation given by <hlink|Aoki|https://www.worldscientific.com/doi/abs/10.1142/S0217979200000923>,
   equation (77). If <math|V<rprime|'>\<approx\>V>, the integration in the
   solution can be simplified by linear approximation, which turns to be the
-  renormalizaiton group equation.
+  renormalization group equation.
 
   <subsection|Self-Similarity in Renormalization Group>
 
   By the previous discussion, the same in pattern means the same in Boltzmann
-  machine. This implies the equality of actional functional, before and after
+  machine. This implies the equality of action functional, before and after
   the operation. That is, <math|S<rsub|V>=S<rsub|V<rprime|'>>>.
 
   <section|Renormalization Group Equation>
@@ -265,7 +264,7 @@
     So, we have <math|S<around*|[|\<phi\>|]>=<big|int>\<mathd\>p<around*|[|<around*|(|\<delta\>S/\<delta\>\<phi\><around*|(|p|)>|)>
     \<phi\><around*|(|p|)>+<around*|(|\<delta\>S/\<delta\><wide|\<phi\>|\<bar\>><around*|(|p|)>|)>
     <wide|\<phi\>|\<bar\>><around*|(|p|)>|]>>. The key is the
-    \Psymmetization\Q step <math|S<around*|[|\<phi\>|]>\<equiv\><around*|(|1/2|)><around*|(|S<around*|[|\<phi\>|]>+<wide|S|\<bar\>><around*|[|\<phi\>|]>|)>>.
+    \Psymmetrization\Q step <math|S<around*|[|\<phi\>|]>\<equiv\><around*|(|1/2|)><around*|(|S<around*|[|\<phi\>|]>+<wide|S|\<bar\>><around*|[|\<phi\>|]>|)>>.
   </footnote>
 
   <\equation*>
@@ -347,7 +346,7 @@
 
   The other terms can be seen as a perturbative expansion based on this
   Gaussian term, and thus all are proportional to higher order of
-  <math|<around*|\||\<mathd\>V<around*|(|t|)>|\|>>, being omittable. So,
+  <math|<around*|\||\<mathd\>V<around*|(|t|)>|\|>>, being negligible. So,
   letting
 
   <\equation*>
@@ -416,19 +415,18 @@
   <\equation*>
     S<around*|[|\<varphi\>|]>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
     <around*|[|b<around*|(|x|)>\<varphi\><around*|(|x|)>+<frac|1|2>a<rsup|<around*|(|0|)>><around*|(|x|)>
-    \<varphi\><rsup|2><around*|(|x|)>+<frac|1|2>a<rsup|<around*|(|1|)>><rsub|\<alpha\>\<beta\>><around*|(|x|)>\<partial\><rsup|\<alpha\>>\<varphi\><around*|(|x|)>\<partial\><rsup|\<beta\>>\<varphi\><around*|(|x|)>+\<cdots\>|]>
+    \<varphi\><rsup|2><around*|(|x|)>+<frac|1|2>a<rsup|<around*|(|1|)>><rsub|\<alpha\>\<beta\>><around*|(|x|)>\<partial\><rsup|\<alpha\>>\<varphi\><around*|(|x|)>\<partial\><rsup|\<beta\>>\<varphi\><around*|(|x|)>+\<cdots\>|]>,
   </equation*>
 
-  The higher derivatives are involved, the larger range of \Pconnections\Q
-  between the \Pneurons\Q. <\footnote>
+  where the components of <math|a> are essentially symmetric and covariant.
+  As indicated in its difference form, the higher derivatives are involved,
+  the larger range of \Pconnections\Q between the \Pneurons\Q.<\footnote>
     Here the words \Pconnection\Q and \Pneuron\Q come from the analogy of
     Boltzmann machine with human brain. The <math|W<around*|(|x,y|)>> is
     analogy to the weight between the neurons at <math|x> and <math|y>.
-  </footnote> Indeed, a function can be recovered in a larger range if we
-  have higher derivatives on the origin.
-
-  The parameter space of <math|S<around*|[|\<varphi\>|]>> is
-  <math|<around*|{|a,b|}>>.
+  </footnote> We also considered the \Pdirection\Q of the connections,
+  indicated by the indices of <math|a>. The parameter space of
+  <math|S<around*|[|\<varphi\>|]>> is <math|<around*|{|a,b|}>>.
 
   <subsection|RGE of Vanilla BM with Locality Has Fixed Points at Everywhere>
 
@@ -573,7 +571,7 @@
     <associate|footnote-5|<tuple|5|4>>
     <associate|footnote-6|<tuple|6|4>>
     <associate|footnote-7|<tuple|7|5>>
-    <associate|footnote-8|<tuple|8|?>>
+    <associate|footnote-8|<tuple|8|5>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|3|3>>
@@ -581,7 +579,7 @@
     <associate|footnr-5|<tuple|5|4>>
     <associate|footnr-6|<tuple|6|4>>
     <associate|footnr-7|<tuple|7|5>>
-    <associate|footnr-8|<tuple|8|?>>
+    <associate|footnr-8|<tuple|8|5>>
   </collection>
 </references>
 
