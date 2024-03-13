@@ -327,7 +327,10 @@
   </align>
 
   So, up to the second order, the integral is a multi-dimensional complex
-  Gaussian, which has result as
+  Gaussian, which has result as<\footnote>
+    For complex Gaussian integral, see the project:
+    <hlink|github.com/shuiruge/gaussian-integral|https://github.com/shuiruge/gaussian-integral>.
+  </footnote>
 
   <\small>
     <\equation*>
@@ -405,7 +408,7 @@
     \<partial\><rsup|2>+\<cdots\>+a<rsub|n><around*|(|x|)>\<partial\><rsup|2n>+\<cdots\>.
   </equation*>
 
-  In this case, action functional is reduced to
+  Based on these, we propose a more symmetric form, as
 
   <\equation*>
     S<around*|[|\<varphi\>|]>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
@@ -565,12 +568,14 @@
     <associate|footnote-4|<tuple|4|3>>
     <associate|footnote-5|<tuple|5|4>>
     <associate|footnote-6|<tuple|6|4>>
+    <associate|footnote-7|<tuple|7|5>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|3|3>>
     <associate|footnr-4|<tuple|4|3>>
     <associate|footnr-5|<tuple|5|4>>
     <associate|footnr-6|<tuple|6|4>>
+    <associate|footnr-7|<tuple|7|5>>
   </collection>
 </references>
 
@@ -627,7 +632,8 @@
       with Locality <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-13>>
 
-      <with|par-left|<quote|1tab>|4.2<space|2spc>RGE for BM
+      <with|par-left|<quote|1tab>|4.2<space|2spc>RGE of Vanilla BM with
+      Locality Has Fixed Points at Everywhere
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-14>>
     </associate>
