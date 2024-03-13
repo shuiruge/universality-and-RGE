@@ -408,12 +408,15 @@
     \<partial\><rsup|2>+\<cdots\>+a<rsub|n><around*|(|x|)>\<partial\><rsup|2n>+\<cdots\>.
   </equation*>
 
-  Based on these, we propose a more symmetric form, as
+  Based on these considerations, we propose a more symmetric form,
+  as<\footnote>
+    The next term that is omitted is <math|<around*|(|1/2|)>a<rsup|<around*|(|2|)>><rsub|\<alpha\>\<beta\>\<gamma\>\<delta\>><around*|(|x|)>\<partial\><rsup|\<alpha\>>\<partial\><rsup|\<beta\>>\<varphi\><around*|(|x|)>\<partial\><rsup|\<gamma\>>\<partial\><rsup|\<delta\>>\<varphi\><around*|(|x|)>>.
+  </footnote>
 
   <\equation*>
     S<around*|[|\<varphi\>|]>=<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
-    <around*|[|b<around*|(|x|)>\<varphi\><around*|(|x|)>+<frac|1|2>a<rsub|0><around*|(|x|)>
-    \<varphi\><rsup|2><around*|(|x|)>+<frac|1|2>a<rsub|1><around*|(|x|)><around*|(|\<partial\>\<varphi\><around*|(|x|)>|)><rsup|2>+\<cdots\>|]>
+    <around*|[|b<around*|(|x|)>\<varphi\><around*|(|x|)>+<frac|1|2>a<rsup|<around*|(|0|)>><around*|(|x|)>
+    \<varphi\><rsup|2><around*|(|x|)>+<frac|1|2>a<rsup|<around*|(|1|)>><rsub|\<alpha\>\<beta\>><around*|(|x|)>\<partial\><rsup|\<alpha\>>\<varphi\><around*|(|x|)>\<partial\><rsup|\<beta\>>\<varphi\><around*|(|x|)>+\<cdots\>|]>
   </equation*>
 
   The higher derivatives are involved, the larger range of \Pconnections\Q
@@ -425,7 +428,7 @@
   have higher derivatives on the origin.
 
   The parameter space of <math|S<around*|[|\<varphi\>|]>> is
-  <math|<around*|{|b,a<rsub|0>,a<rsub|1>,\<ldots\>|}>>.
+  <math|<around*|{|a,b|}>>.
 
   <subsection|RGE of Vanilla BM with Locality Has Fixed Points at Everywhere>
 
@@ -441,16 +444,18 @@
 
   <\align>
     <tformat|<table|<row|<cell|>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>x
-    <around*|[|a<rsub|0><around*|(|x|)> \<varphi\><rsup|2><around*|(|x|)>+a<rsub|1><around*|(|x|)>\<partial\>\<varphi\><around*|(|x|)>
-    \<partial\>\<varphi\><around*|(|x|)>+\<cdots\>|]>>>|<row|<cell|=>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>p\<mathd\>p<rprime|'>
-    <wide|\<varphi\>|\<bar\>><around*|(|p|)><around*|[|a<rsub|0><around*|(|p-p<rprime|'>|)>+a<rsub|1><around*|(|p-p<rprime|'>|)>
-    <around*|(|p\<cdot\>p<rprime|'>|)>+a<rsub|2><around*|(|p-p<rprime|'>|)><around*|(|p\<cdot\>p<rprime|'>|)><rsup|2>+\<cdots\>|]>
+    <around*|[|a<rsup|<around*|(|0|)>><around*|(|x|)>
+    \<varphi\><rsup|2><around*|(|x|)>+a<rsup|<around*|(|1|)>><rsub|\<alpha\>\<beta\>><around*|(|x|)>\<partial\><rsup|\<alpha\>>\<varphi\><around*|(|x|)>
+    \<partial\><rsup|\<beta\>>\<varphi\><around*|(|x|)>+\<cdots\>|]>>>|<row|<cell|=>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>p\<mathd\>p<rprime|'>
+    <wide|\<varphi\>|\<bar\>><around*|(|p|)><around*|[|a<rsup|<around*|(|0|)>><around*|(|p-p<rprime|'>|)>+a<rsup|<around*|(|1|)>><rsub|\<alpha\>\<beta\>><around*|(|p-p<rprime|'>|)>
+    p<rsup|\<alpha\>>p<rprime|'><rsup|\<beta\>>+\<cdots\>|]>
     \<varphi\><around*|(|p<rprime|'>|)>>>|<row|<cell|=>|<cell|<big|int><rsub|\<bbb-R\><rsup|n>>\<mathd\>p\<mathd\>p<rprime|'><wide|\<varphi\>|\<bar\>><around*|(|p|)>A<around*|(|p,p<rprime|'>|)>\<varphi\><around*|(|p<rprime|'>|)>,>>>>
   </align>
 
-  where <math|A<around*|(|p,p<rprime|'>|)>\<assign\><big|sum><rsub|n=0><rsup|+\<infty\>>a<rsub|n><around*|(|p-p<rprime|'>|)><around*|(|p\<cdot\>p<rprime|'>|)><rsup|n>>.
-  Since <math|a<rsub|n><around*|(|x|)>\<in\>\<bbb-R\>>, we have
-  <math|<wide|a|\<bar\>><rsub|n><around*|(|p|)>=a<rsub|n><around*|(|-p|)>>,
+  where <math|A<around*|(|p,p<rprime|'>|)>\<assign\>a<rsup|<around*|(|0|)>><around*|(|p-p<rprime|'>|)>+a<rsup|<around*|(|1|)>><rsub|\<alpha\>\<beta\>><around*|(|p-p<rprime|'>|)>
+  p<rsup|\<alpha\>>p<rprime|'><rsup|\<beta\>>+\<cdots\>>. Since
+  <math|a<rsup|<around*|(|n|)>><around*|(|x|)>\<in\>\<bbb-R\>>, we have
+  <math|<wide|a|\<bar\>><rsup|<around*|(|n|)>><around*|(|p|)>=a<rsup|<around*|(|n|)>><around*|(|-p|)>>,
   and thus <math|A<around*|(|p,p<rprime|'>|)><rsup|\<ast\>>=A<around*|(|p<rprime|'>,p|)>>.
   So, <math|A> is Hermitian.
 
@@ -522,8 +527,7 @@
 
   <\equation*>
     <big|int><rsub|\<mathd\>V>\<mathd\>p \ ln<around*|(|<frac|\<delta\><rsup|2>S<rsub|V<around*|(|t|)>>|\<delta\><wide|\<phi\>|\<bar\>><around*|(|p|)>\<delta\>\<phi\><around*|(|p|)>><around*|[|\<varphi\>,0|]>|)>=<big|int><rsub|\<mathd\>V>\<mathd\>p
-    \ ln<around*|(|A<around*|(|p,p|)>|)>=\<mathd\>V
-    ln<around*|(|A<around*|(|0,0|)>|)>.
+    \ ln<around*|(|A<around*|(|p,p|)>|)>.
   </equation*>
 
   \;
@@ -537,7 +541,7 @@
 
   In other words, the renormalization group equation of vanilla Boltzmann
   machine with locality has fixed points at everywhere in the parameter space
-  <math|<around*|{|b,a<rsub|0>,a<rsub|1>,\<ldots\>|}>>.
+  <math|<around*|{|a,b|}>>.
 </body>
 
 <\initial>
@@ -569,6 +573,7 @@
     <associate|footnote-5|<tuple|5|4>>
     <associate|footnote-6|<tuple|6|4>>
     <associate|footnote-7|<tuple|7|5>>
+    <associate|footnote-8|<tuple|8|?>>
     <associate|footnr-1|<tuple|1|1>>
     <associate|footnr-2|<tuple|2|1>>
     <associate|footnr-3|<tuple|3|3>>
@@ -576,6 +581,7 @@
     <associate|footnr-5|<tuple|5|4>>
     <associate|footnr-6|<tuple|6|4>>
     <associate|footnr-7|<tuple|7|5>>
+    <associate|footnr-8|<tuple|8|?>>
   </collection>
 </references>
 
